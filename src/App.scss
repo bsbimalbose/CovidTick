@@ -1,0 +1,75 @@
+@import './style/config';
+@import './style/mediaQuery';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: #fafafa;
+}
+
+.app-content-wrap {
+  @include responsive(big-desktop){
+  margin-left: 120px;
+  }
+  @include responsive(phone){
+    width: 100vw;
+  }
+}
+
+.pr0 {
+  padding-right: 0px !important;
+}
+.pl0 {
+  padding-left: 0px !important;
+}
+.table-cell-info {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.new-cases {
+  color: #6200ee;
+}
+.new-deaths {
+  color: #b00020;
+}
+
+.new-recovered {
+  color: green;
+}
+
+.country-table-info-wrap {
+}
+
+.ant-select-item {
+  &.ant-select-item-option {
+    &.ant-select-item-option-active {
+      background-color: #f1a1ab;
+    }
+  }
+}
+
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(156, 156, 156, 0.3);
+	border-radius: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(112, 112, 112, 0.3);
+	background-color: #ccc;
+}

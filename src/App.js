@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, useMemo, useEffect } from "react";
+import "./App.scss";
+import Nav from "./components/desktop/Nav/Nav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Dashboard from "./pages/dashboard";
+import India from "./pages/india";
+import Compare from "./pages/compare";
+import reducer from "./store/reducer";
+
+export const AppContext = React.createContext();
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, {});
+  const contextValue = useMemo(() => {
+    return { state, dispatch };
+  }, [state, dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={contextValue}>
+      <Router>
+        <div className="App">
+          <Nav />
+          <div className="app-content-wrap">
+            <Switch>
+              <Route path={"/"} exact component={Dashboard} />
+              <Route path={"/india"} component={India} />
+              <Route path={"/compare"} component={Compare} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    </AppContext.Provider>
   );
 }
 

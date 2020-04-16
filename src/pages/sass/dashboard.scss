@@ -1,0 +1,20 @@
+.dash-map-tile{
+    // display: flex;
+    // flex-wrap: wrap;
+    // height: 94vh;
+    // overflow: hidden;
+    // width: 90vw;
+    // min-width: 800px;
+    // padding: 20px;
+    // margin-top: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    .world-map-wrap{
+        position: relative;
+        flex:1;
+    }
+}
+
