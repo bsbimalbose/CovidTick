@@ -92,7 +92,8 @@ function GeoChart({ mapData, property, countryDetails }) {
             width: "100%",
             background: "#F9F3F3",
             color: "grey",
-            borderRadius: "15px"
+            borderRadius: "15px",
+            minHeight: "300px"
           }}
           ref={svgRef}
         ></svg>
