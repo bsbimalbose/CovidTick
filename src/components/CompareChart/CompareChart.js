@@ -55,8 +55,9 @@ export default function CompareChart() {
         dataSet={dataPlaceHolder}
         options={{
           legend: {
-            onClick: null
-          }
+            onClick: null,
+          },
+          maintainAspectRatio: false
         }}
       />
     </div>
