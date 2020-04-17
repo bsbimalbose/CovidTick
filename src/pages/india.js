@@ -4,7 +4,7 @@ import { AppContext } from "../App";
 import { getFromLocalStorage, saveToLocalStorage } from "../utils";
 import StateSearch from "../components/StateSearch/StateSearch";
 import CaseSummary from "../components/CaseSummary/CaseSummary";
-import { CASES_SUMMARY } from "../constants/CASES";
+import { CASES_SUMMARY } from "../constants";
 import LineChart from "../components/Charts/LineChart";
 import moment from "moment";
 

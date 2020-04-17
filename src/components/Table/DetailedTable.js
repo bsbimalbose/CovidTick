@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 import { FaArrowUp } from "react-icons/fa";
 import Table from "./Table";
-import { districtColInfo } from "../../constants/INDIA";
+import { districtColInfo } from "../../constants";
 
 export default function DetailedTable({
   colInfo,

@@ -11,10 +11,10 @@ body {
 }
 
 .app-content-wrap {
-  @include responsive(big-desktop){
+  @include media(big-desktop){
   margin-left: 120px;
   }
-  @include responsive(phone){
+  @include media(phone){
     width: 100vw;
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { AutoComplete } from "antd";
-import { COMPARE_LOCATIONS, countries } from "../../constants/COMPARE";
+import { COMPARE_LOCATIONS, countries } from "../../constants";
 import { AppContext } from "../../App";
 import { getCountryHistory } from "../../api";
 import {

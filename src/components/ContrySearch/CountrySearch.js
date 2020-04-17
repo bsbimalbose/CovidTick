@@ -4,7 +4,7 @@ import "./country-search.scss";
 import IconInput from "../IconInput";
 import { FiSearch } from "react-icons/fi";
 import Table from "../Table/Table";
-import { worldColInfo } from "../../constants/WORLD";
+import { worldColInfo } from "../../constants";
 
 export default function CountrySearch() {
   const { state, dispatch } = useContext(AppContext);

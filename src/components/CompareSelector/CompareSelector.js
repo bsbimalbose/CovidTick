@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./compareSelector.scss";
 import AddComparison from "./AddComparison";
-import { countries, compareColors } from "../../constants/COMPARE";
+import { countries, compareColors } from "../../constants";
 import { AppContext } from "../../App";
 
 export default function CompareSelector({}) {

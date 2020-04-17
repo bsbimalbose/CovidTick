@@ -1,8 +1,7 @@
 import produce from "immer";
 import { getNumber } from "../utils";
 import moment from "moment";
-import { compareColors, countries } from "../constants/COMPARE";
-import { indiaStateCodes } from "../constants/IN_STATE_CODES";
+import { compareColors, countries, indiaStateCodes } from "../constants";
 
 const nonCountries = [
   "North America",

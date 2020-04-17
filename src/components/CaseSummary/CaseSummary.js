@@ -1,5 +1,5 @@
 import React from "react";
-import { LOCATION_META, CASES_SUMMARY } from "../../constants/CASES";
+import { LOCATION_META, CASES_SUMMARY } from "../../constants";
 import CaseTile from "./CaseTile";
 
 export default function CaseSummary({ locationInfo }) {

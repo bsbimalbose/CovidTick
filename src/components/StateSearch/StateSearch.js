@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import IconInput from "../IconInput";
 import { FiSearch } from "react-icons/fi";
 import Table from "../Table/Table";
-import { indiaColInfo } from "../../constants/INDIA";
+import { indiaColInfo } from "../../constants";
 import DetailedTable from "../Table/DetailedTable";
 
 export default function StateSearch() {

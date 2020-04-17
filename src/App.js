@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo, useEffect } from "react";
+import React, { useReducer, useMemo } from "react";
 import "./App.scss";
 import Nav from "./components/desktop/Nav/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
