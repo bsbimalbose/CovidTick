@@ -34,7 +34,7 @@ export default function India() {
         // dispatch({ type: "SET_WORLD_DATA", value: (worldData || {}).data });
       })();
     }
-    if (!state?.indiaStats?.districtWise) {
+    if (!state?.indiaStats?.districtInfo) {
       (async function anyNameFunction() {
         let indiaDistrictInfo = {};
         const localStorageValue = getFromLocalStorage("india-info-district");

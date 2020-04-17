@@ -8,7 +8,7 @@ import './map.scss';
 export default function WorldMap() {
   const [property, setProperty] = useState("pop_est");
   const { state, dispatch } = useContext(AppContext);
-  const locations = state?.dashboard?.worldStats || [];
+  const locations = state?.dashboard?.casesByCountry || [];
 
   const countryCodeCasesMap = locations.reduce((acc, location)=>{
     acc[(location?.country_name||"_").replace(/[. ]+/g,"")] = location;

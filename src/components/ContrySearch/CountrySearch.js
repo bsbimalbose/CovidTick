@@ -3,13 +3,13 @@ import { AppContext } from "../../App";
 import "./country-search.scss";
 import IconInput from "../IconInput";
 import { FiSearch } from "react-icons/fi";
-import Table from "../Table/Table";
 import { worldColInfo } from "../../constants";
 import { Spin } from "antd";
+import DetailedTable from "../Table/DetailedTable";
 
 export default function CountrySearch() {
   const { state, dispatch } = useContext(AppContext);
-  const locations = state?.dashboard?.worldStats || [];
+  const locations = state?.dashboard?.casesByCountry || [];
 
   const [sortObj, setSortObj] = useState({});
 
@@ -45,7 +45,7 @@ export default function CountrySearch() {
 
   return (
     <div className="country-search">
-      <Spin spinning={state?.dashboard?.isLoading || false}>
+      <Spin spinning={state?.dashboard?.isCountryStatsLoading || false}>
         <div className="search-wrap">
           <IconInput
             icon={<FiSearch />}
@@ -54,12 +54,9 @@ export default function CountrySearch() {
           />
         </div>
         <div
-          style={{
-            overflow: "auto",
-            height: "80vh"
-          }}
+         className="country-search-overflow"
         >
-          <Table
+          <DetailedTable
             colInfo={worldColInfo}
             data={data}
             sortedInfo={sortObj}

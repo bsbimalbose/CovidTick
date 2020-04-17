@@ -7,7 +7,12 @@ let config = {
   }
 };
 
-export const getWorldData = async () =>
+export const getWorldStats = async () =>
+  await axios.get(
+    "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php",
+    config
+  );
+export const getCasesByCountryData = async () =>
   await axios.get(
     "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
     config

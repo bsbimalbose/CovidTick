@@ -14,47 +14,77 @@ const nonCountries = [
 ];
 const nonStates = ["Total"];
 
-export default (state, action) => {
+export default (state = {}, action) => {
   console.log("action", action);
   switch (action.type) {
-    case "DASH_LOAD": {
+    case "LOAD_CASES_BY_COUNTRY": {
       return produce(state, draft => {
         if (!draft?.dashboard) {
           draft.dashboard = {};
         }
-        draft.dashboard.isLoading = true;
+        draft.dashboard.isCountryStatsLoading = true;
       });
     }
-    case "SET_NEW_WORLD_DATA": {
-      return {
-        ...state,
-        dashboard: {
-          isLoading: false,
-          worldStats: (action.value?.countries_stat || [])
-            .filter(country => !nonCountries.includes(country.country_name))
-            .map(country => ({
-              ...country,
-              cases: getNumber(country?.cases),
-              new_cases: getNumber(country?.new_cases),
-              active_cases: getNumber(country?.active_cases),
-              deaths: getNumber(country?.deaths),
-              new_deaths: getNumber(country?.new_deaths),
-              total_recovered: getNumber(country?.total_recovered)
-            })),
-          updated: action.value?.statistic_taken_at || ""
+    case "LOAD_WORLD_STATS": {
+      return produce(state, draft => {
+        if (!draft?.dashboard) {
+          draft.dashboard = {};
         }
-      };
+        draft.dashboard.isWorldStatsLoading = true;
+      });
+    }
+    case "SET_WORLD_STATS": {
+      return produce(state, draft => {
+        const worldStat = action.value || {};
+        if (!draft?.dashboard) {
+          draft.dashboard = {};
+        }
+        draft.dashboard.worldStat = {
+          new_cases: getNumber(worldStat?.new_cases),
+          cases: getNumber(worldStat?.total_cases),
+          active_cases: getNumber(worldStat?.active_cases),
+          total_recovered: getNumber(worldStat?.total_recovered),
+          new_deaths: getNumber(worldStat?.new_deaths),
+          deaths: getNumber(worldStat?.total_deaths)
+        };
+        draft.dashboard.isWorldStatsLoading = false;
+      });
+    }
+    case "SET_CASES_BY_COUNTRY": {
+      return produce(state, draft => {
+        if (!draft?.dashboard) {
+          draft.dashboard = {};
+        }
+        draft.dashboard.isCountryStatsLoading = false;
+        draft.dashboard.casesByCountry = (action.value?.countries_stat || [])
+          .filter(country => !nonCountries.includes(country.country_name))
+          .map(country => ({
+            ...country,
+            cases: getNumber(country?.cases),
+            new_cases: getNumber(country?.new_cases),
+            active_cases: getNumber(country?.active_cases),
+            deaths: getNumber(country?.deaths),
+            new_deaths: getNumber(country?.new_deaths),
+            total_recovered: getNumber(country?.total_recovered)
+          }));
+        draft.dashboard.updated = action.value?.statistic_taken_at || "";
+      });
     }
 
     case "COUNTRY_SEARCH": {
-      const newLocations = (state?.worldStats || []).map(countryInfo => ({
-        ...countryInfo,
-        hidden: !(countryInfo?.country_name || "")
-          .toLowerCase()
-          .includes(action.value.trim().toLowerCase())
-      }));
-      return produce(state || {}, draftState => {
-        draftState.worldStats = newLocations;
+      const newLocations = (state?.dashboard?.casesByCountry || []).map(
+        countryInfo => ({
+          ...countryInfo,
+          hidden: !(countryInfo?.country_name || "")
+            .toLowerCase()
+            .includes(action.value.trim().toLowerCase())
+        })
+      );
+      return produce(state, draftState => {
+        if (!draftState?.dashboard) {
+          draftState.dashboard = {};
+        }
+        draftState.dashboard.casesByCountry = newLocations;
       });
     }
 

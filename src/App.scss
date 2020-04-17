@@ -5,14 +5,23 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  
 }
+
 body {
-  background: #fafafa;
+  background-color: $background !important;
+  @include media(phone){
+    background-color: #fff !important;
+  }
 }
 
 .app-content-wrap {
   @include media(big-desktop){
   margin-left: 120px;
+  padding-top: 20px;
+  padding-right: 20px
   }
   @include media(phone){
     width: 100vw;
@@ -32,14 +41,14 @@ body {
 }
 
 .new-cases {
-  color: #6200ee;
+  color: $green;
 }
 .new-deaths {
-  color: #b00020;
+  color: $deep-red;
 }
 
 .new-recovered {
-  color: green;
+  color: $green;
 }
 
 .country-table-info-wrap {
@@ -53,6 +62,10 @@ body {
   }
 }
 
+.flex-around{
+  display: flex;
+  justify-content: space-around;
+}
 
 ::-webkit-scrollbar-track
 {

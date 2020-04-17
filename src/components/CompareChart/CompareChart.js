@@ -21,13 +21,12 @@ export default function CompareChart() {
     return current;
   }, {});
 
-  debugger;
   const xAxis = (oldestDataSet?.Confirmed || []).map(item =>
     moment(item.date).format("DD-MMM-YY")
   );
 
   const getDataList = (item, biggestDataSet) => {
-    debugger;
+
     const oldestStartDate = biggestDataSet?.Confirmed?.[0]?.date;
     const itemStartDate = item?.Confirmed?.[0]?.date;
     if (oldestStartDate && itemStartDate) {

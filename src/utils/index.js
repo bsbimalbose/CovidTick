@@ -58,13 +58,15 @@ export const getFromLocalStorage = key => {
 };
 
 export const saveToLocalStorage = (key, value) => {
-  localStorage.setItem(
-    key,
-    JSON.stringify({
-      timestamp: moment(),
-      value
-    })
-  );
+  Promise.resolve().then(function() {
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        timestamp: moment(),
+        value
+      })
+    );
+  });
 };
 
 export const getNumber = item =>

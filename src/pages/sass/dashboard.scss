@@ -1,12 +1,33 @@
-.dash-map-tile{
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-wrap: wrap;
-    .world-map-wrap{
-        position: relative;
-        flex:1;
-    }
-}
+@import '../../style/mediaQuery';
 
+.dash-map-tile {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+
+  .dash-left-wrap {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    .stat-card-wrap {
+      display: flex;
+      justify-content: space-between;
+      @include media(big-desktop){
+        margin-left: 16px;
+      }
+      @include media(phone){
+        margin: 0px;
+      }
+    }
+    .world-map-wrap {
+      padding: 8px;
+      position: relative;
+      flex: 1;
+      @include media(big-desktop){
+        margin-left: 16px;
+      }
+    }
+  }
+}

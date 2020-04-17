@@ -6,8 +6,8 @@ import {
   MdKeyboardArrowUp
 } from "react-icons/md";
 import { FaArrowUp } from "react-icons/fa";
-import Table from "./Table";
 import { districtColInfo } from "../../constants";
+import "./detailedTable.scss";
 
 export default function DetailedTable({
   colInfo,
@@ -15,7 +15,7 @@ export default function DetailedTable({
   data,
   className = "",
   sortedInfo,
-  handleHeadClick,
+  handleHeadClick = () => {},
   detailedKey
 }) {
   const [openRowIndexes, setOpenIndexes] = useState([]);
@@ -79,10 +79,12 @@ export default function DetailedTable({
       </thead>
       <tbody>
         {data.map((row, rowIndex) => (
-          <>
+          <React.Fragment key={row.country_name}>
             <tr
               onClick={() => {
-                handleRowClick(rowIndex);
+                if (detailedKey && row[detailedKey]) {
+                  handleRowClick(rowIndex);
+                }
               }}
             >
               {
@@ -108,7 +110,11 @@ export default function DetailedTable({
                         <FaArrowUp /> {row[col.newId]}
                       </div>
                     )}
-                    {row[col.id]}
+                    <div>
+                      {isNaN(row[col.id]) && typeof row[col.id] === "number"
+                        ? "N/A"
+                        : row[col.id].toLocaleString()}
+                    </div>
                   </div>
                 </td>
               ))}
@@ -116,11 +122,14 @@ export default function DetailedTable({
             {openRowIndexes.includes(rowIndex) && (
               <tr className="detailed-info-row">
                 <td colSpan={colInfo.length}>
-                  <Table colInfo={districtColInfo} data={row[detailedKey]} />
+                  <DetailedTable
+                    colInfo={districtColInfo}
+                    data={row[detailedKey]}
+                  />
                 </td>
               </tr>
             )}
-          </>
+          </React.Fragment>
         ))}
       </tbody>
     </table>

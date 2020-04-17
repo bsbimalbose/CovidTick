@@ -1,0 +1,67 @@
+@import "../../style/config";
+@import "../../style/mediaQuery";
+
+.table {
+  width: 100%;
+  th,
+  td {
+    padding: 10px;
+    @include media(phone) {
+      padding: 4px;
+      font-size: 12px;
+    }
+    .cell {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      .new {
+        margin-right: 5px;
+        font-size: 12px;
+        @include media(phone) {
+          font-size: 10px;
+        }
+        svg {
+          margin-right: 2px;
+          font-size: 8px;
+        }
+      }
+    }
+    &:nth-child(2) {
+      .cell {
+        justify-content: flex-start;
+        .head-label {
+          cursor: default !important;
+        }
+      }
+    }
+  }
+  th {
+    .cell {
+      .new,
+      .head-label {
+        cursor: pointer;
+        position: relative;
+        svg {
+          font-size: 16px;
+          position: absolute;
+        }
+      }
+      .new {
+        svg {
+          left: -15px;
+        }
+      }
+      .head-label {
+        svg {
+          right: -15px;
+        }
+      }
+    }
+  }
+
+  tr {
+    &:nth-child(even) {
+      background: #f7f7f7;
+    }
+  }
+}

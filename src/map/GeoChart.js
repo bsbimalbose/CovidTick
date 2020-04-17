@@ -22,7 +22,7 @@ function GeoChart({ mapData, property, countryDetails }) {
       max(Object.values(countryDetails), country => country.cases) || 20000;
     const colorScale = scaleSqrt()
       .domain([0, maxProp])
-      .range(["#ccc", "red"]);
+      .range(["#ddd", "#FC312F"]);
 
     const projection = geoMercator().fitSize([width, height], mapData);
     const pathGenerator = geoPath().projection(projection);
@@ -45,6 +45,7 @@ function GeoChart({ mapData, property, countryDetails }) {
         setSelectedCountry(null);
       })
       .attr("class", "country")
+      // .attr("stroke", "#eee")
       .transition()
       .attr("fill", feature => {
         let color = "#ccc";
@@ -74,7 +75,7 @@ function GeoChart({ mapData, property, countryDetails }) {
 
   return (
     <div className="world-map-wrap">
-      <Spin spinning={state?.dashboard?.isLoading || false}>
+      <Spin spinning={state?.dashboard?.isCountryStatsLoading || false}>
         {selectedCountry && (
           <div className="selected-country">
             <span className="country-name">

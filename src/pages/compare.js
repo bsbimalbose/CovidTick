@@ -22,17 +22,18 @@ export default function Compare() {
   };
 
   useEffect(() => {
-    dispatch({ type: "SET_INDIA_HISTORY_STATES", value: [] });
-    fetchDailyStateData();
+    if (!state?.compare?.stateDaily) {
+      fetchDailyStateData();
+    }
   }, []);
 
   return (
     <div className="compare-page-wrap">
       <CompareSelector />
       {/* <div style={{ display: "flex", justifyContent: "center" }}> */}
-        <Spin spinning={state?.compare?.isLoading || false}>
-          <CompareChart />
-        </Spin>
+      <Spin spinning={state?.compare?.isLoading || false}>
+        <CompareChart />
+      </Spin>
       {/* </div> */}
     </div>
   );
