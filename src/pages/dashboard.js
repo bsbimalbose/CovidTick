@@ -5,11 +5,13 @@ import "./sass/dashboard.scss";
 import { getFromLocalStorage, saveToLocalStorage } from "../utils";
 import { getWorldData } from "../api";
 import { AppContext } from "../App";
+import { Spin } from "antd";
 
 export default function Dashboard() {
   const { state, dispatch } = useContext(AppContext);
 
   const fetchWorldInfo = async () => {
+    dispatch({ type: "DASH_LOAD" });
     let worldInfo = getFromLocalStorage("world-info");
     if (!worldInfo) {
       worldInfo = (await getWorldData())?.data || [];

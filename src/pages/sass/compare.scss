@@ -11,12 +11,15 @@
   min-height: 90vh;
   background: #fff;
 
+  .ant-spin-container {
+    display: flex;
+    justify-content: center;
+  }
   .compare-chart-wrap {
     width: 100%;
     max-width: 900px;
     min-height: 370px;
     margin-top: 20px;
-    
   }
 
   .compare-selector {

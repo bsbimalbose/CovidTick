@@ -17,23 +17,35 @@ const nonStates = ["Total"];
 export default (state, action) => {
   console.log("action", action);
   switch (action.type) {
+    case "DASH_LOAD": {
+      return produce(state, draft => {
+        if (!draft?.dashboard) {
+          draft.dashboard = {};
+        }
+        draft.dashboard.isLoading = true;
+      });
+    }
     case "SET_NEW_WORLD_DATA": {
       return {
         ...state,
-        worldStats: (action.value?.countries_stat || [])
-          .filter(country => !nonCountries.includes(country.country_name))
-          .map(country => ({
-            ...country,
-            cases: getNumber(country?.cases),
-            new_cases: getNumber(country?.new_cases),
-            active_cases: getNumber(country?.active_cases),
-            deaths: getNumber(country?.deaths),
-            new_deaths: getNumber(country?.new_deaths),
-            total_recovered: getNumber(country?.total_recovered)
-          })),
-        updated: action.value?.statistic_taken_at || ""
+        dashboard: {
+          isLoading: false,
+          worldStats: (action.value?.countries_stat || [])
+            .filter(country => !nonCountries.includes(country.country_name))
+            .map(country => ({
+              ...country,
+              cases: getNumber(country?.cases),
+              new_cases: getNumber(country?.new_cases),
+              active_cases: getNumber(country?.active_cases),
+              deaths: getNumber(country?.deaths),
+              new_deaths: getNumber(country?.new_deaths),
+              total_recovered: getNumber(country?.total_recovered)
+            })),
+          updated: action.value?.statistic_taken_at || ""
+        }
       };
     }
+
     case "COUNTRY_SEARCH": {
       const newLocations = (state?.worldStats || []).map(countryInfo => ({
         ...countryInfo,
@@ -168,6 +180,14 @@ export default (state, action) => {
         };
       });
     }
+    case "COMPARE_LOAD": {
+      return produce(state, draft => {
+        if (!draft?.compare) {
+          draft.compare = {};
+        }
+        draft.compare.isLoading = true;
+      });
+    }
     case "ADD_COMPARISON_HISTORY": {
       return produce(state, draft => {
         draft.compare = {
@@ -175,7 +195,8 @@ export default (state, action) => {
           comparisonHistory: [
             ...(draft?.compare?.comparisonHistory || []),
             action.value
-          ]
+          ],
+          isLoading: false
         };
       });
     }

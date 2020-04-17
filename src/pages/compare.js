@@ -5,11 +5,10 @@ import "./sass/compare.scss";
 import { AppContext } from "../App";
 import { getIndiaStateDaily } from "../api";
 import { getFromLocalStorage, saveToLocalStorage } from "../utils";
+import { Spin } from "antd";
 
 export default function Compare() {
   const { state, dispatch } = useContext(AppContext);
-  const compareList = state?.compare?.current || [];
-
   const fetchDailyStateData = async () => {
     let stateDaily = getFromLocalStorage("COMPARE_INDIA_DAILY");
     if (!stateDaily) {
@@ -30,9 +29,11 @@ export default function Compare() {
   return (
     <div className="compare-page-wrap">
       <CompareSelector />
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <CompareChart />
-      </div>
+      {/* <div style={{ display: "flex", justifyContent: "center" }}> */}
+        <Spin spinning={state?.compare?.isLoading || false}>
+          <CompareChart />
+        </Spin>
+      {/* </div> */}
     </div>
   );
 }

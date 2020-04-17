@@ -1,12 +1,15 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { select, geoPath, geoMercator, max, scaleSqrt } from "d3";
 import useResizeObserver from "./useResizeObserver";
 import { get } from "../utils";
+import { AppContext } from "../App";
+import { Spin } from "antd";
 
 function GeoChart({ mapData, property, countryDetails }) {
   const svgRef = useRef();
   const wrapperRef = useRef();
   const dimensions = useResizeObserver(wrapperRef);
+  const { state, dispatch } = useContext(AppContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
 
   useEffect(() => {
@@ -16,8 +19,7 @@ function GeoChart({ mapData, property, countryDetails }) {
     const svg = select(svgRef.current);
 
     const maxProp =
-      max(Object.values(countryDetails), country => country.cases) ||
-      20000;
+      max(Object.values(countryDetails), country => country.cases) || 20000;
     const colorScale = scaleSqrt()
       .domain([0, maxProp])
       .range(["#ccc", "red"]);
@@ -72,32 +74,31 @@ function GeoChart({ mapData, property, countryDetails }) {
 
   return (
     <div className="world-map-wrap">
-      {selectedCountry && (
-        <div className="selected-country">
-          <span className="country-name">
-            {selectedCountry.properties?.name}
-          </span>{" "}
-          :{" "}
-          <span className="country-value">
-            {selectedCountryDetails.cases || 0}
-          </span>
+      <Spin spinning={state?.dashboard?.isLoading || false}>
+        {selectedCountry && (
+          <div className="selected-country">
+            <span className="country-name">
+              {selectedCountry.properties?.name}
+            </span>{" "}
+            :{" "}
+            <span className="country-value">
+              {selectedCountryDetails.cases || 0}
+            </span>
+          </div>
+        )}
+        <div ref={wrapperRef} style={{ width: "100%" }}>
+          <svg
+            style={{
+              width: "100%",
+              background: "#F9F3F3",
+              color: "grey",
+              borderRadius: "15px",
+              minHeight: "300px"
+            }}
+            ref={svgRef}
+          ></svg>
         </div>
-      )}
-      <div
-        ref={wrapperRef}
-        style={{ width:'100%'}}
-      >
-        <svg
-          style={{
-            width: "100%",
-            background: "#F9F3F3",
-            color: "grey",
-            borderRadius: "15px",
-            minHeight: "300px"
-          }}
-          ref={svgRef}
-        ></svg>
-      </div>
+      </Spin>
     </div>
   );
 }

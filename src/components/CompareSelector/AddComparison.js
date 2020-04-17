@@ -30,6 +30,7 @@ export default function AddComparison() {
   };
 
   const fetchCountryHistory = async country => {
+    dispatch({type: "COMPARE_LOAD"})
     const resp = (await getCountryHistory(country))?.data;
     const countryInfo = resp?.stat_by_country || [];
 
