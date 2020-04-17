@@ -49,7 +49,7 @@ export default function CompareChart() {
   }));
 
   return (
-    <div style={{ width: "60%" }}>
+    <div className="compare-chart-wrap">
       <LineChart
         labels={xAxis}
         dataSet={dataPlaceHolder}

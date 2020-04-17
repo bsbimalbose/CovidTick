@@ -1,10 +1,8 @@
-import React, { useState, useContext } from "react";
-import "./compareSelector.scss";
+import React, { useContext } from "react";
 import AddComparison from "./AddComparison";
-import { countries, compareColors } from "../../constants";
 import { AppContext } from "../../App";
 
-export default function CompareSelector({}) {
+export default function CompareSelector() {
   const { state } = useContext(AppContext);
   const compareList = state?.compare?.current || [];
   return (
@@ -16,7 +14,7 @@ export default function CompareSelector({}) {
           <div>{location.color}</div>
         </div>
       ))}
-      {(compareList.length < 3 || true) && <AddComparison />}
+      {(compareList.length < 5) && <AddComparison />}
     </div>
   );
 }

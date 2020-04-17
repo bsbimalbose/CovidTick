@@ -23,14 +23,16 @@ export default function Compare() {
   };
 
   useEffect(() => {
-    dispatch({ type: "SET_INDIA_HISTORY_STATES", value:[] });
+    dispatch({ type: "SET_INDIA_HISTORY_STATES", value: [] });
     fetchDailyStateData();
   }, []);
 
   return (
     <div className="compare-page-wrap">
       <CompareSelector />
-      <CompareChart />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CompareChart />
+      </div>
     </div>
   );
 }
