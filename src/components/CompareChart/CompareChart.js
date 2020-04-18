@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import LineChart from "../Charts/LineChart";
 import { AppContext } from "../../App";
 import moment from "moment";
+import { COMPARE_COLORS } from "../../constants";
 
 export default function CompareChart() {
   const { state } = useContext(AppContext);
   const comparisonHistory = state?.compare?.comparisonHistory || [];
-  const colors = ["#4285F4", "#DB4437", "#FFCA28", "#43A047", "#9C27B0"];
 
   const oldestDataSet = comparisonHistory.reduce((oldest, current) => {
     if (!oldest) {
@@ -26,7 +26,6 @@ export default function CompareChart() {
   );
 
   const getDataList = (item, biggestDataSet) => {
-
     const oldestStartDate = biggestDataSet?.Confirmed?.[0]?.date;
     const itemStartDate = item?.Confirmed?.[0]?.date;
     if (oldestStartDate && itemStartDate) {
@@ -43,7 +42,7 @@ export default function CompareChart() {
 
   const dataPlaceHolder = comparisonHistory.map((item, index) => ({
     label: item.label,
-    borderColor: colors[index],
+    borderColor: COMPARE_COLORS[index],
     data: getDataList(item, oldestDataSet)
   }));
 
@@ -54,7 +53,7 @@ export default function CompareChart() {
         dataSet={dataPlaceHolder}
         options={{
           legend: {
-            onClick: null,
+            onClick: null
           },
           maintainAspectRatio: false
         }}

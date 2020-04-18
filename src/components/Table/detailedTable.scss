@@ -65,6 +65,11 @@
       .head-label {
         svg {
           right: -15px;
+          @include media(phone) {
+            right: -12px;
+            bottom: 0;
+            z-index: 99;
+          }
         }
       }
     }

@@ -11,6 +11,9 @@ export const CASES_SUMMARY = {
     INDIA_STATE: "INDIA_STATE"
   };
 
+  export const COMPARE_COLORS = ["#4285F4", "#DB4437", "#FFCA28", "#43A047", "#9C27B0"];
+
+
   export const countries = [
     "USA",
     "Spain",

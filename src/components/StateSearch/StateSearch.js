@@ -57,13 +57,13 @@ export default function StateSearch() {
   return (
     <div>
       <div className="country-search">
-        <div className="search-wrap">
+        {/* <div className="search-wrap">
           <IconInput
             icon={<FiSearch />}
             placeHolder="Search Country"
             onChange={value => dispatch({ type: "INDIA_SEARCH", value })}
           />
-        </div>
+        </div> */}
         <div
           className="state-search-overflow-wrap"
         >

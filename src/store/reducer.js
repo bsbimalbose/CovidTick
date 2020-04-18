@@ -117,7 +117,7 @@ export default (state = {}, action) => {
         }));
 
         const rawSummary = newStateData.find(state => state.state === "Total");
-        draft.india = {
+        draft.indiaStats = {
           confirmed: getNumber(rawSummary.confirmed),
           deltaconfirmed: getNumber(rawSummary.deltaconfirmed),
           active: getNumber(rawSummary.active),
@@ -254,6 +254,16 @@ export default (state = {}, action) => {
           ],
           isLoading: false
         };
+      });
+    }
+    case "REMOVE_COMPARISON_HISTORY": {
+      return produce(state, draft => {
+        draft.compare.comparisonHistory = (
+          draft.compare.comparisonHistory || []
+        ).filter(item => item.label !== action.value.label);
+        draft.compare.current = (draft.compare.current || []).filter(
+          item => item.label !== action.value.label
+        );
       });
     }
     case "ADD_COMPARE_ITEM": {

@@ -14,10 +14,22 @@ export default function India() {
   const { state, dispatch } = useContext(AppContext);
   const indiaStats = state?.india?.indiaStats || {};
   const summaryArray = [
-    { label: CASES_SUMMARY.CONFIRMED, count: indiaStats.confirmed },
+    {
+      label: CASES_SUMMARY.CONFIRMED,
+      count: indiaStats.confirmed,
+      change: indiaStats.deltaconfirmed
+    },
     { label: CASES_SUMMARY.ACTIVE, count: indiaStats.active },
-    { label: CASES_SUMMARY.DEATHS, count: indiaStats.deaths },
-    { label: CASES_SUMMARY.RECOVERED, count: indiaStats.recovered }
+    {
+      label: CASES_SUMMARY.DEATHS,
+      count: indiaStats.deaths,
+      change: indiaStats.deltadeaths
+    },
+    {
+      label: CASES_SUMMARY.RECOVERED,
+      count: indiaStats.recovered,
+      change: indiaStats.deltarecovered
+    }
   ];
 
   useEffect(() => {
@@ -82,20 +94,34 @@ export default function India() {
     return acc;
   }, dataPlaceHolder);
   return (
-    <div>
-      <Spin spinning={state?.india?.isDistrictLoading && state?.india?.isStateLoading}>
-        <CaseSummary locationInfo={summaryArray} />
-      </Spin>
-      <Spin
-        spinning={
-          state?.india?.isDistrictLoading && state?.india?.isStateLoading
-        }
-      >
-        <StateSearch />
-      </Spin>
-      <div style={{ width: "100%" }}>
-        <Spin spinning={state?.india?.isDistrictLoading && state?.india?.isStateLoading}>
-          <LineChart labels={xAxis} dataSet={dataSet} />
+    <div className="india-tile">
+      <div className="india-left-wrap">
+        <Spin
+          spinning={
+            state?.india?.isDistrictLoading && state?.india?.isStateLoading
+          }
+        >
+          <CaseSummary locationInfo={summaryArray} />
+        </Spin>
+
+        <div style={{ width: "100%" }}>
+          <Spin
+            spinning={
+              state?.india?.isDistrictLoading && state?.india?.isStateLoading
+            }
+          >
+            <LineChart labels={xAxis} dataSet={dataSet} />
+          </Spin>
+        </div>
+      </div>
+
+      <div className="state-search-wrap">
+        <Spin
+          spinning={
+            state?.india?.isDistrictLoading && state?.india?.isStateLoading
+          }
+        >
+          <StateSearch />
         </Spin>
       </div>
     </div>
