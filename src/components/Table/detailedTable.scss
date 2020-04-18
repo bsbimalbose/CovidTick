@@ -7,7 +7,7 @@
   td {
     padding: 10px;
     @include media(phone) {
-      padding: 4px;
+      padding: 7px;
       font-size: 12px;
     }
     .cell {
@@ -25,9 +25,7 @@
           font-size: 8px;
         }
       }
-    }
-    &:nth-child(2) {
-      .cell {
+      &.align-left{
         justify-content: flex-start;
         .head-label {
           cursor: default !important;

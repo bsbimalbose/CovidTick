@@ -8,6 +8,7 @@ import {
 import { FaArrowUp } from "react-icons/fa";
 import { districtColInfo } from "../../constants";
 import "./detailedTable.scss";
+import { getDeviceLabel } from "../../utils";
 
 export default function DetailedTable({
   colInfo,
@@ -34,10 +35,10 @@ export default function DetailedTable({
     <table className={`table ${className}`}>
       <thead>
         <tr>
-          <th width="10px"></th>
+          {detailedKey && <th width="10px"></th>}
           {colInfo.map(col => (
             <th>
-              <div className="cell">
+              <div className={`cell ${col.leftAlign ? "align-left" : ""}`}>
                 {col.newId && (
                   <div
                     onClick={() => {
@@ -63,7 +64,7 @@ export default function DetailedTable({
                     col.sortable && handleHeadClick(col.id);
                   }}
                 >
-                  {col.label}
+                  {col[getDeviceLabel()]}
                   {sortedInfo?.id === col.id ? (
                     sortedInfo?.order === "asc" ? (
                       <MdArrowDropUp />
@@ -87,7 +88,7 @@ export default function DetailedTable({
                 }
               }}
             >
-              {
+              {detailedKey && (
                 <td>
                   {detailedKey && row[detailedKey] ? (
                     openRowIndexes.includes(rowIndex) ? (
@@ -97,27 +98,32 @@ export default function DetailedTable({
                     )
                   ) : null}
                 </td>
-              }
-              {colInfo.map(col => (
-                <td>
-                  <div className="cell">
-                    {col.newId && Boolean(row[col.newId]) && (
-                      <div
-                        className={`new ${
-                          col.newClassName ? col.newClassName : ""
-                        }`}
-                      >
-                        <FaArrowUp /> {row[col.newId]}
+              )}
+              {colInfo.map(col => {
+                console.log("col: ", col);
+                return (
+                  <td>
+                    <div
+                      className={`cell ${col.leftAlign ? "align-left" : ""}`}
+                    >
+                      {col.newId && Boolean(row[col.newId]) && (
+                        <div
+                          className={`new ${
+                            col.newClassName ? col.newClassName : ""
+                          } `}
+                        >
+                          <FaArrowUp /> {row[col.newId]}
+                        </div>
+                      )}
+                      <div>
+                        {isNaN(row[col.id]) && typeof row[col.id] === "number"
+                          ? "N/A"
+                          : row[col.id].toLocaleString()}
                       </div>
-                    )}
-                    <div>
-                      {isNaN(row[col.id]) && typeof row[col.id] === "number"
-                        ? "N/A"
-                        : row[col.id].toLocaleString()}
                     </div>
-                  </div>
-                </td>
-              ))}
+                  </td>
+                );
+              })}
             </tr>
             {openRowIndexes.includes(rowIndex) && (
               <tr className="detailed-info-row">

@@ -367,10 +367,15 @@ export const CASES_SUMMARY = {
   export const worldColInfo = [
     {
       label: "Country",
-      id: "country_name"
+      mLabel: "",
+      sLabel: "",
+      id: "country_name",
+      leftAlign: true
     },
     {
       label: "Confirmed",
+      mLabel: "Confmd",
+      sLabel: "C",
       id: "cases",
       newId: "new_cases",
       newLabel: "new",
@@ -379,17 +384,23 @@ export const CASES_SUMMARY = {
     },
     {
       label: "Active",
+      mLabel: "Actv",
+      sLabel: "A",
       id: "active_cases",
       sortable: true
     },
   
     {
       label: "Recovered",
+      mLabel: "Rcrvd",
+      sLabel: "R",
       id: "total_recovered",
       sortable: true
     },
     {
       label: "Deaths",
+      mLabel: "Dcsd",
+      sLabel: "D",
       id: "deaths",
       newId: "new_deaths",
       newLabel: "new",

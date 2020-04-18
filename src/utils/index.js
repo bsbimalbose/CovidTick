@@ -19,6 +19,13 @@ export const get = (value = {}, path, defaultValue) =>
       : defaultValue
     : defaultValue;
 
+export const getDeviceLabel = () =>
+  window.innerWidth <= 375
+    ? "sLabel"
+    : window.innerWidth <= 769
+    ? "mLabel"
+    : "label";
+
 export const combineProvincesToFormCountryInfo = locationsData => {
   const countryMap = locationsData.reduce((acc, location) => {
     if (!acc[location.country_code]) {

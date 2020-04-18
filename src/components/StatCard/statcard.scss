@@ -14,7 +14,7 @@
     color: rgba(0, 0, 0, 0.45);
     font-size: 14px;
     @include media(phone) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
   .value {
@@ -22,7 +22,7 @@
     font-size: 18px;
     font-weight: 500;
     @include media(phone) {
-      font-size: 12px;
+      font-size: 14px;
     }
   }
   .change {
@@ -37,7 +37,7 @@
       }
     }
     @include media(phone) {
-      font-size: 8px;
+      font-size: 10px;
     }
   }
 }
