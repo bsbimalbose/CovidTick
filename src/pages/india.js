@@ -8,7 +8,8 @@ import { CASES_SUMMARY } from "../constants";
 import LineChart from "../components/Charts/LineChart";
 import moment from "moment";
 import "./sass/india.scss";
-import { Spin } from "antd";
+import { Spin, Card } from "antd";
+import { ReactSVG } from "react-svg";
 
 export default function India() {
   const { state, dispatch } = useContext(AppContext);
@@ -94,36 +95,46 @@ export default function India() {
     return acc;
   }, dataPlaceHolder);
   return (
-    <div className="india-tile">
-      <div className="india-left-wrap">
-        <Spin
-          spinning={
-            state?.india?.isDistrictLoading && state?.india?.isStateLoading
-          }
-        >
-          <CaseSummary locationInfo={summaryArray} />
-        </Spin>
-
-        <div style={{ width: "100%" }}>
+    <Card
+      title={
+        <div className="main-title">
+          <i className="logo"></i>CovidTick - India Tracker
+        </div>
+      }
+      bordered={false}
+      className="india"
+    >
+      <div className="india-tile">
+        <div className="india-left-wrap">
           <Spin
             spinning={
               state?.india?.isDistrictLoading && state?.india?.isStateLoading
             }
           >
-            <LineChart labels={xAxis} dataSet={dataSet} />
+            <CaseSummary locationInfo={summaryArray} />
+          </Spin>
+
+          <div>
+            <Spin
+              spinning={
+                state?.india?.isDistrictLoading && state?.india?.isStateLoading
+              }
+            >
+              <LineChart labels={xAxis} dataSet={dataSet} />
+            </Spin>
+          </div>
+        </div>
+
+        <div className="state-search-wrap">
+          <Spin
+            spinning={
+              state?.india?.isDistrictLoading && state?.india?.isStateLoading
+            }
+          >
+            <StateSearch />
           </Spin>
         </div>
       </div>
-
-      <div className="state-search-wrap">
-        <Spin
-          spinning={
-            state?.india?.isDistrictLoading && state?.india?.isStateLoading
-          }
-        >
-          <StateSearch />
-        </Spin>
-      </div>
-    </div>
+    </Card>
   );
 }

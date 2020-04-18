@@ -1,29 +1,28 @@
-@import './style/config';
-@import './style/mediaQuery';
+@import "./style/config";
+@import "./style/mediaQuery";
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Montserrat', sans-serif;
-  
+  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
   background-color: $background !important;
-  @include media(phone){
+  @include media(phone) {
     background-color: #fff !important;
   }
 }
 
 .app-content-wrap {
-  @include media(big-desktop){
-  margin-left: 120px;
-  padding-top: 20px;
-  padding-right: 20px
+  @include media(big-desktop) {
+    margin-left: 120px;
+    padding-top: 20px;
+    padding-right: 20px;
   }
-  @include media(phone){
+  @include media(phone) {
     width: 100vw;
   }
 }
@@ -62,27 +61,93 @@ body {
   }
 }
 
-.flex-around{
+.flex-around {
   display: flex;
   justify-content: space-around;
 }
 
-::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(156, 156, 156, 0.3);
-	border-radius: 6px;
-	background-color: #F5F5F5;
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(156, 156, 156, 0.3);
+  border-radius: 6px;
+  background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar
-{
-	width: 6px;
-	background-color: #F5F5F5;
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(112, 112, 112, 0.3);
-	background-color: #ccc;
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(112, 112, 112, 0.3);
+  background-color: #ccc;
+}
+
+.ant-card-body {
+  @include media(phone) {
+    padding: 10px;
+    padding-bottom: 100px;
+  }
+}
+
+.ant-card-head {
+  .main-title{
+    display: flex;
+    align-items: center;
+    .logo {
+      background-image: url("./logo.gif");
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      margin-right: 7px;
+      animation: spin 6s linear infinite;
+    }
+  
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      8.33% {
+        transform: rotate(60deg);
+      }
+      16.66% {
+        transform: rotate(60deg);
+      }
+      25% {
+        transform: rotate(120deg);
+      }
+  
+      33.33% {
+        transform: rotate(120deg);
+      }
+      41.66% {
+        transform: rotate(180deg);
+      }
+      50% {
+        transform: rotate(180deg);
+      }
+      58.33% {
+        transform: rotate(240deg);
+      }
+  
+      66.66% {
+        transform: rotate(240deg);
+      }
+      75% {
+        transform: rotate(300deg);
+      }
+      83.33% {
+        transform: rotate(300deg);
+      }
+      91.66% {
+        transform: rotate(360deg);
+      }
+  
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
 }

@@ -5,7 +5,7 @@ import "./sass/compare.scss";
 import { AppContext } from "../App";
 import { getIndiaStateDaily } from "../api";
 import { getFromLocalStorage, saveToLocalStorage } from "../utils";
-import { Spin } from "antd";
+import { Spin, Card } from "antd";
 
 export default function Compare() {
   const { state, dispatch } = useContext(AppContext);
@@ -28,13 +28,26 @@ export default function Compare() {
   }, []);
 
   return (
-    <div className="compare-page-wrap">
-      <CompareSelector />
-      {/* <div style={{ display: "flex", justifyContent: "center" }}> */}
-      <Spin spinning={state?.compare?.isLoading || false}>
-        <CompareChart />
-      </Spin>
-      {/* </div> */}
-    </div>
+    <Card
+      title={
+        <div className="main-title">
+          <i className="logo"></i>CovidTick - Compare
+        </div>
+      }
+      bordered={false}
+    >
+      <div className="compare-page-wrap">
+        <div style={{ textAlign: "center" }}>
+          Add countries or Indian states to compare with each other by clicking
+          the +Add comparison button
+        </div>
+        <CompareSelector />
+        {/* <div style={{ display: "flex", justifyContent: "center" }}> */}
+        <Spin spinning={state?.compare?.isLoading || false}>
+          <CompareChart />
+        </Spin>
+        {/* </div> */}
+      </div>
+    </Card>
   );
 }

@@ -6,6 +6,7 @@ import Dashboard from "./pages/dashboard";
 import India from "./pages/india";
 import Compare from "./pages/compare";
 import reducer from "./store/reducer";
+import Tips from "./pages/tips";
 
 export const AppContext = React.createContext();
 
@@ -25,6 +26,7 @@ function App() {
               <Route path={"/"} exact component={Dashboard} />
               <Route path={"/india"} component={India} />
               <Route path={"/compare"} component={Compare} />
+              <Route path={"/tips"} component={Tips} />
             </Switch>
           </div>
         </div>

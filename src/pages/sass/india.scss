@@ -1,41 +1,54 @@
 @import "../../style/mediaQuery";
 
-.india-tile {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
-  display: flex;
-  @include media(phone) {
-    flex-wrap: wrap;
+.india {
+  .ant-card-body {
+    @include media(phone) {
+      padding: 5px;
+      padding-bottom: 100px;
+    }
   }
-
-  .india-left-wrap {
+  .india-tile {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-flow: column;
-    flex: 1;
-    .stats-wrap {
+    @include media(phone) {
+      flex-wrap: wrap;
+    }
+
+    .india-left-wrap {
       display: flex;
-      justify-content: space-between;
-      .stat-card {
-        margin-left: 15px;
+      flex-flow: column;
+      flex: 1;
+      .stats-wrap {
+        display: flex;
+        justify-content: space-between;
+        .stat-card {
+          @include media(big-desktop) {
+            margin-left: 15px;
+          }
+        }
       }
     }
-  }
 
-  .state-search-wrap {
-    flex: 1;
-  }
-
-  .state-search-overflow-wrap {
-    @include media(big-desktop) {
-      overflow: "hidden";
-      overflow-y: "auto";
-      height: "80vh";
-    }
-    .table th {
+    .state-search-wrap {
+      flex: 1;
       @include media(phone) {
-        position: sticky;
-        top: 0px;
+        // margin-left: -14px;
+      }
+    }
+
+    .state-search-overflow-wrap {
+      @include media(big-desktop) {
+        overflow: "hidden";
+        overflow-y: "auto";
+        height: "80vh";
+      }
+      .table th {
+        @include media(phone) {
+          position: sticky;
+          top: 0px;
+        }
       }
     }
   }

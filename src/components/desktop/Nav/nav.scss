@@ -43,23 +43,48 @@
     }
 
     @keyframes spin {
-      0% {transform: rotate(0deg);}
-      8.33% {transform: rotate(60deg);}
-      16.66% {transform: rotate(60deg);}
-      25% {transform: rotate(120deg);}
+      0% {
+        transform: rotate(0deg);
+      }
+      8.33% {
+        transform: rotate(60deg);
+      }
+      16.66% {
+        transform: rotate(60deg);
+      }
+      25% {
+        transform: rotate(120deg);
+      }
 
-      33.33% {transform: rotate(120deg);}
-      41.66% {transform: rotate(180deg);}
-      50% {transform: rotate(180deg);}
-      58.33% {transform: rotate(240deg);}
+      33.33% {
+        transform: rotate(120deg);
+      }
+      41.66% {
+        transform: rotate(180deg);
+      }
+      50% {
+        transform: rotate(180deg);
+      }
+      58.33% {
+        transform: rotate(240deg);
+      }
 
-      66.66% {transform: rotate(240deg);}
-      75% {transform: rotate(300deg);}
-      83.33% {transform: rotate(300deg);}
-      91.66% {transform: rotate(360deg);}
+      66.66% {
+        transform: rotate(240deg);
+      }
+      75% {
+        transform: rotate(300deg);
+      }
+      83.33% {
+        transform: rotate(300deg);
+      }
+      91.66% {
+        transform: rotate(360deg);
+      }
 
-      100% {transform: rotate(360deg);}
-    
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
   .nav-buttons {
@@ -88,16 +113,38 @@
       margin-bottom: 5px;
       cursor: pointer;
       transition: transform 0.2s;
+
+      div {
+        display: flex;
+      }
+
+      .india-icon {
+        svg {
+          fill: #ff5367;
+        }
+      }
+
       &:hover {
         transform: scale(1.1);
         background: #ff5367;
         color: #fff;
+        .india-icon {
+          svg {
+            fill: #fff;
+          }
+        }
       }
+
       &.active {
         transform: scale(1.2);
         background: #fc313f;
         color: #fff;
         z-index: 2;
+        .india-icon {
+          svg {
+            fill: #fff;
+          }
+        }
       }
     }
   }
