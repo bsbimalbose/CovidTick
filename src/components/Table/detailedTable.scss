@@ -14,9 +14,13 @@
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
+      font-weight: 500;
+      flex-wrap: wrap;
       .new {
         margin-right: 5px;
         font-size: 12px;
+        display: flex;
+        align-items: center;
         @include media(phone) {
           font-size: 10px;
         }
@@ -25,8 +29,11 @@
           font-size: 8px;
         }
       }
-      &.align-left{
+      &.align-left {
         justify-content: flex-start;
+        @include media(phone) {
+          margin-right: -18px;
+        }
         .head-label {
           cursor: default !important;
         }
@@ -36,10 +43,11 @@
   th {
     background: #ddd;
     @include media(phone) {
-    position: sticky;
-    top: 30px;
+      position: sticky;
+      top: 30px;
     }
     .cell {
+      flex-wrap: nowrap;
       .new,
       .head-label {
         cursor: pointer;
@@ -65,6 +73,11 @@
   tr {
     &:nth-child(even) {
       background: #f7f7f7;
+    }
+    &.detailed-info-row {
+      .detailed-info-cell {
+        padding: 0 50px;
+      }
     }
   }
 }

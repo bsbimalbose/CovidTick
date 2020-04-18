@@ -1,12 +1,12 @@
 import React from "react";
 import "./nav.scss";
 import NavButton from "./NavButton";
-import { useHistory, useLocation  } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import navMap from "./navMap";
 
 export default function Nav() {
   const history = useHistory();
-  const location = useLocation ();
+  const location = useLocation();
   function handleClick(path) {
     history.push(path);
   }
@@ -19,6 +19,7 @@ export default function Nav() {
       <div className="nav-buttons">
         {navMap.map(nav => (
           <NavButton
+            key={nav.url}
             onClick={() => {
               handleClick(nav.url);
             }}

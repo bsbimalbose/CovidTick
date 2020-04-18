@@ -1,0 +1,9 @@
+@import "../../style/mediaQuery";
+
+.state-search-overflow-wrap {
+  @include media(big-desktop) {
+    overflow: "hidden";
+    overflow-y: "auto";
+    height: "80vh";
+  }
+}

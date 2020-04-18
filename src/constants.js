@@ -314,10 +314,15 @@ export const CASES_SUMMARY = {
   export const indiaColInfo = [
     {
       label: "State",
-      id: "state"
+      id: "state",
+      mLabel: "",
+      sLabel: "",
+      leftAlign: true,
     },
     {
       label: "Confirmed",
+      mLabel: "Confmd",
+      sLabel: "C",
       id: "confirmed",
       newId: "deltaconfirmed",
       newLabel: "new",
@@ -326,11 +331,15 @@ export const CASES_SUMMARY = {
     },
     {
       label: "Active",
+      mLabel: "Actv",
+      sLabel: "A",
       id: "active",
       sortable: true
     },
     {
       label: "Recovered",
+      mLabel: "Rcrvd",
+      sLabel: "R",
       id: "recovered",
       newId: "deltarecovered",
       newLabel: "new",
@@ -339,6 +348,8 @@ export const CASES_SUMMARY = {
     },
     {
       label: "Deaths",
+      mLabel: "Dths",
+      sLabel: "D",
       id: "deaths",
       newId: "deltadeaths",
       newLabel: "new",
@@ -351,10 +362,15 @@ export const CASES_SUMMARY = {
   
     {
       label: "District",
+      mLabel: "District",
+      sLabel: "Dstrt",
+      leftAlign: true,
       id: "name"
     },
     {
       label: "Confirmed",
+      mLabel: "Confmd",
+      sLabel: "C",
       id: "confirmed",
       newId: "new_confirmed",
       newLabel: "new",
@@ -399,7 +415,7 @@ export const CASES_SUMMARY = {
     },
     {
       label: "Deaths",
-      mLabel: "Dcsd",
+      mLabel: "Dths",
       sLabel: "D",
       id: "deaths",
       newId: "new_deaths",

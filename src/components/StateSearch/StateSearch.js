@@ -7,9 +7,9 @@ import DetailedTable from "../Table/DetailedTable";
 
 export default function StateSearch() {
   const { state, dispatch } = useContext(AppContext);
-  const locations = state?.indiaStats?.statewise || [];
-  const districtInfo = state?.indiaStats?.districtInfo || [];
-  const locationWithDistrict = state?.indiaStats?.locationWithDistrict;
+  const locations = state?.india?.casesByState || [];
+  const districtInfo = state?.india?.districtInfo || {};
+  const locationWithDistrict = state?.india?.locationWithDistrict;
   const [sortObj, setSortObj] = useState({});
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function StateSearch() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (true) {
+    if (locations?.length && Object.keys(districtInfo)?.length) {
       dispatch({
         type: "COMBINE_STATE_DISTRICT",
         state: locations,
@@ -65,11 +65,7 @@ export default function StateSearch() {
           />
         </div>
         <div
-          style={{
-            overflow: "hidden",
-            overflowY: "auto",
-            height: "80vh"
-          }}
+          className="state-search-overflow-wrap"
         >
           <DetailedTable
             colInfo={indiaColInfo}

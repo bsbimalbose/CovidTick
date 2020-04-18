@@ -99,35 +99,30 @@ export default function DetailedTable({
                   ) : null}
                 </td>
               )}
-              {colInfo.map(col => {
-                console.log("col: ", col);
-                return (
-                  <td>
-                    <div
-                      className={`cell ${col.leftAlign ? "align-left" : ""}`}
-                    >
-                      {col.newId && Boolean(row[col.newId]) && (
-                        <div
-                          className={`new ${
-                            col.newClassName ? col.newClassName : ""
-                          } `}
-                        >
-                          <FaArrowUp /> {row[col.newId]}
-                        </div>
-                      )}
-                      <div>
-                        {isNaN(row[col.id]) && typeof row[col.id] === "number"
-                          ? "N/A"
-                          : row[col.id].toLocaleString()}
+              {colInfo.map(col => (
+                <td>
+                  <div className={`cell ${col.leftAlign ? "align-left" : ""}`}>
+                    {col.newId && Boolean(row[col.newId]) && (
+                      <div
+                        className={`new ${
+                          col.newClassName ? col.newClassName : ""
+                        } `}
+                      >
+                        <FaArrowUp /> {row[col.newId]}
                       </div>
+                    )}
+                    <div>
+                      {isNaN(row[col.id]) && typeof row[col.id] === "number"
+                        ? "N/A"
+                        : row[col.id].toLocaleString()}
                     </div>
-                  </td>
-                );
-              })}
+                  </div>
+                </td>
+              ))}
             </tr>
             {openRowIndexes.includes(rowIndex) && (
               <tr className="detailed-info-row">
-                <td colSpan={colInfo.length}>
+                <td colSpan={colInfo.length+1} className="detailed-info-cell">
                   <DetailedTable
                     colInfo={districtColInfo}
                     data={row[detailedKey]}

@@ -88,11 +88,36 @@ export default (state = {}, action) => {
       });
     }
 
-    case "SET_INDIA_DATA": {
-      const indiaStats = produce(state.indiaStats || {}, draftState => {
+    case "LOAD_SATE_DATA": {
+      return produce(state, draft => {
+        if (!draft?.india) {
+          draft.india = {};
+        }
+        draft.india.isStateLoading = true;
+      });
+    }
+    case "LOAD_DISTRICT_DATA": {
+      return produce(state, draft => {
+        if (!draft?.india) {
+          draft.india = {};
+        }
+        draft.india.isDistrictLoading = true;
+      });
+    }
+
+    case "SET_INDIA_CASES_BY_STATE": {
+      const india = produce(state.india || {}, draft => {
+        draft.isStateLoading = false;
         const newStateData = action?.value?.statewise || [];
+
+        const daily = action?.value?.cases_time_series || {};
+        draft.daily = daily.map(item => ({
+          ...item,
+          date: moment(item.date + "2020", "DD MMMM YYYY")
+        }));
+
         const rawSummary = newStateData.find(state => state.state === "Total");
-        draftState.summary = {
+        draft.india = {
           confirmed: getNumber(rawSummary.confirmed),
           deltaconfirmed: getNumber(rawSummary.deltaconfirmed),
           active: getNumber(rawSummary.active),
@@ -101,7 +126,7 @@ export default (state = {}, action) => {
           recovered: getNumber(rawSummary.recovered),
           deltarecovered: getNumber(rawSummary.deltarecovered)
         };
-        draftState.statewise = (newStateData || [])
+        draft.casesByState = (newStateData || [])
           .filter(
             state =>
               !nonStates.includes(state?.state) &&
@@ -118,23 +143,24 @@ export default (state = {}, action) => {
             deltarecovered: getNumber(state?.deltarecovered)
           }));
       });
-      return { ...state, indiaStats: indiaStats || {} };
+      return { ...state, india: india || {} };
     }
     case "SET_INDIA_DISTRICT_DATA": {
-      const indiaStats = produce(state.indiaStats || {}, draftState => {
-        draftState.districtInfo = action.value || {};
+      const india = produce(state.india || {}, draft => {
+        draft.districtInfo = action.value || {};
+        draft.isDistrictLoading = false;
       });
-      return { ...state, indiaStats };
+      return { ...state, india };
     }
     case "SET_INDIA_DAILY_DATA": {
-      const indiaStats = produce(state.indiaStats || {}, draftState => {
+      const india = produce(state.india || {}, draftState => {
         const daily = action?.value?.cases_time_series || {};
         draftState.daily = daily.map(item => ({
           ...item,
           date: moment(item.date + "2020", "DD MMMM YYYY")
         }));
       });
-      return { ...state, indiaStats };
+      return { ...state, india };
     }
     case "COMBINE_STATE_DISTRICT": {
       const locationWithDistrict = (action.state || []).map(state => {
@@ -153,7 +179,7 @@ export default (state = {}, action) => {
 
       return {
         ...state,
-        indiaStats: { ...state.indiaStats, locationWithDistrict }
+        india: { ...state.india, locationWithDistrict }
       };
     }
     case "SET_INDIA_HISTORY_STATES": {
