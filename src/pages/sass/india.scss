@@ -5,7 +5,9 @@
   border-radius: 15px;
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
   display: flex;
-  // flex-wrap: wrap;
+  @include media(phone) {
+    flex-wrap: wrap;
+  }
 
   .india-left-wrap {
     display: flex;
@@ -29,6 +31,12 @@
       overflow: "hidden";
       overflow-y: "auto";
       height: "80vh";
+    }
+    .table th {
+      @include media(phone) {
+        position: sticky;
+        top: 0px;
+      }
     }
   }
 }
