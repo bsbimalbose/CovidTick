@@ -1,31 +1,37 @@
 @import "../../style/mediaQuery";
 
 .country-search {
-  overflow: hidden;
   background: #fff;
   padding: 8px;
   margin: 16px;
   border-radius: 8px;
   flex: 1;
   min-width: 350px;
+  @include media(big-desktop) {
+    overflow: hidden;
+  }
   @include media(phone) {
     margin: 0;
+    padding: 0;
   }
 
   .search-wrap {
     display: flex;
+    padding: 5px;
     justify-content: center;
+    @include media(phone) {
+      position: sticky;
+      top: 0;
+      background: #fff;
+    }
     .input-wrap {
       width: 80%;
     }
   }
   .country-search-overflow {
-    overflow: auto;
-    height: 80vh;
-    @include media(phone) {
-      height: 90vh;
-      // position: sticky;
-      // top: 0;
+    @include media(big-desktop) {
+      overflow: auto;
+      height: 80vh;
     }
   }
 }

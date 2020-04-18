@@ -34,6 +34,11 @@
     }
   }
   th {
+    background: #ddd;
+    @include media(phone) {
+    position: sticky;
+    top: 30px;
+    }
     .cell {
       .new,
       .head-label {
