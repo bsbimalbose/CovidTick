@@ -1,6 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## covidTick.netlify.com
+
+![Alt text](/public/screenshot.PNG?raw=true "website screenshot")
+
+
 
 In the project directory, you can run:
 
