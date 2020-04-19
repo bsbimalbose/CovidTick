@@ -1,10 +1,11 @@
 import React from "react";
-import { Card, Collapse } from "antd";
+import { Card, Collapse, Button } from "antd";
+import { FaGithub } from "react-icons/fa";
 const { Panel } = Collapse;
 
 export default function Tips() {
   return (
-    <div>
+    <div className="tips-wrap">
       <Card
         title={
           <div className="main-title">
@@ -81,6 +82,19 @@ export default function Tips() {
           >
             More Info
           </a>
+        </div>
+
+        <div className="github-link">
+          <Button
+            href="https://github.com/bsbimalbose/CovidTick"
+            target="_blank"
+            type="primary"
+            shape="round"
+            icon={<FaGithub />}
+            className="github-link"
+          >
+            GitHub
+          </Button>
         </div>
       </Card>
     </div>
