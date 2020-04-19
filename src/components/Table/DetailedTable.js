@@ -87,6 +87,7 @@ export default function DetailedTable({
                   handleRowClick(rowIndex);
                 }
               }}
+              className={detailedKey && row[detailedKey] ? "pointer-hand" : ""}
             >
               {detailedKey && (
                 <td>
@@ -122,10 +123,13 @@ export default function DetailedTable({
             </tr>
             {openRowIndexes.includes(rowIndex) && (
               <tr className="detailed-info-row">
-                <td colSpan={colInfo.length+1} className="detailed-info-cell">
+                <td colSpan={colInfo.length + 1} className="detailed-info-cell">
                   <DetailedTable
                     colInfo={districtColInfo}
-                    data={row[detailedKey]}
+                    data={row[detailedKey].sort((a, b) => {
+                      const sortKey = "confirmed";
+                      return b[sortKey] - a[sortKey];
+                    })}
                   />
                 </td>
               </tr>

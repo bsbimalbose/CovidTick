@@ -76,6 +76,9 @@
   }
 
   tr {
+    &.pointer-hand {
+      cursor: pointer;
+    }
     &:nth-child(even) {
       background: #f7f7f7;
     }
