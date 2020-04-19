@@ -13,7 +13,7 @@ export default function Nav() {
 
   return (
     <div className="nav">
-      <div className="nav-logo">
+      <div className="nav-logo" onClick={() => handleClick("/")}>
         <div className="logo"></div>
       </div>
       <div className="nav-buttons">

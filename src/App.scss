@@ -33,6 +33,9 @@ body {
 .pl0 {
   padding-left: 0px !important;
 }
+.p20{
+  padding: 20px;
+}
 .table-cell-info {
   display: flex;
   align-items: flex-end;
@@ -85,8 +88,8 @@ body {
 
 .ant-card-body {
   @include media(phone) {
-    padding: 10px;
-    padding-bottom: 100px;
+    padding: 10px !important;
+    padding-bottom: 100px !important;
   }
 }
 
@@ -150,4 +153,8 @@ body {
       }
     }
   }
+}
+
+.ant-spin-dot-item {
+  background: $light-red !important;
 }

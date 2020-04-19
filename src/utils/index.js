@@ -26,6 +26,7 @@ export const getDeviceLabel = () =>
     ? "mLabel"
     : "label";
 
+
 export const combineProvincesToFormCountryInfo = locationsData => {
   const countryMap = locationsData.reduce((acc, location) => {
     if (!acc[location.country_code]) {
