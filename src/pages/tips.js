@@ -14,7 +14,7 @@ export default function Tips() {
         bordered={false}
       >
         <p>General public health information</p>
-        <Collapse>
+        <Collapse accordion>
           <Panel header="STAY home" key="1">
             <p>
               Stay at home if you begin to feel unwell, even with mild symptoms

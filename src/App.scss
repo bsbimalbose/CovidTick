@@ -33,7 +33,7 @@ body {
 .pl0 {
   padding-left: 0px !important;
 }
-.p20{
+.p20 {
   padding: 20px;
 }
 .table-cell-info {
@@ -157,4 +157,8 @@ body {
 
 .ant-spin-dot-item {
   background: $light-red !important;
+}
+
+.ant-collapse-header {
+  background: #fff;
 }
