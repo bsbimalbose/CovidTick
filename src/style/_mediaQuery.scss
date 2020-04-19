@@ -1,6 +1,6 @@
 @mixin media($breakpoint) {
     @if $breakpoint == phone {
-        @media only screen and (max-width: 600px) { @content };
+        @media only screen and (max-width: 769px) { @content };
     }
     // @if $breakpoint == tab-port {
     //     @media only screen and (max-width: 900px) { @content };
@@ -10,6 +10,6 @@
     // }
     @if $breakpoint == big-desktop {
         // @media only screen and (min-width: 1800px) { @content };
-        @media only screen and (min-width: 601px) { @content };
+        @media only screen and (min-width: 770px) { @content };
     }
 }

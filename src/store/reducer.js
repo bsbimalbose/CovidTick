@@ -1,7 +1,7 @@
 import produce from "immer";
 import { getNumber } from "../utils";
 import moment from "moment";
-import { compareColors, countries, indiaStateCodes } from "../constants";
+import { countries, indiaStateCodes } from "../constants";
 
 const nonCountries = [
   "North America",
@@ -183,7 +183,6 @@ export default (state = {}, action) => {
       };
     }
     case "SET_INDIA_HISTORY_STATES": {
-      // debugger;
       return produce(state, draft => {
         const stateDailyDraft = (action.value || []).reduce((acc, item) => {
           const stateKeys = Object.keys(item).filter(
@@ -192,7 +191,6 @@ export default (state = {}, action) => {
 
           stateKeys.map(key => {
             let existing = acc.find(accItem => accItem.key === key);
-            // debugger;
             if (!existing) {
               existing = { key, longKey: indiaStateCodes[key.toUpperCase()] };
               acc.push(existing);
@@ -201,7 +199,6 @@ export default (state = {}, action) => {
               existing[item.status] = [];
             }
             existing[item.status].push({ date: item.date, value: item[key] });
-            // debugger;
           });
 
           return acc;
@@ -275,8 +272,7 @@ export default (state = {}, action) => {
           label: action.value,
           type: countries.find(country => country === action.value)
             ? "Country"
-            : "State",
-          color: compareColors[draft.compare.length]
+            : "State"
         });
       });
     }

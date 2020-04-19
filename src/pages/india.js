@@ -36,7 +36,6 @@ export default function India() {
   useEffect(() => {
     console.log("rendering.....");
     if (!state?.india?.casesByState && !state?.india?.isStateLoading) {
-      debugger;
       dispatch({
         type: "LOAD_SATE_DATA"
       });
@@ -114,7 +113,7 @@ export default function India() {
             <CaseSummary locationInfo={summaryArray} />
           </Spin>
 
-          <div>
+          <div className="graph-wrap">
             <Spin
               spinning={
                 state?.india?.isDistrictLoading && state?.india?.isStateLoading

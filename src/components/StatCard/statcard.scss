@@ -1,4 +1,5 @@
 @import "../../style/mediaQuery";
+@import "../../style/config";
 
 .stat-card {
   background: #fff;
@@ -7,6 +8,7 @@
   margin: 16px 0;
   border-radius: 2px;
   user-select: none;
+  font-weight: 600;
   @include media(phone) {
     padding: 6px 12px;
   }
@@ -18,7 +20,7 @@
     }
   }
   .value {
-    color:rgba(0, 0, 0, 0.65);;
+    color: rgba(0, 0, 0, 0.65);
     font-size: 18px;
     font-weight: 500;
     @include media(phone) {
@@ -30,6 +32,9 @@
     font-size: 11px;
     display: flex;
     align-items: center;
+    &.green {
+      color: $green;
+    }
     svg {
       font-size: 16px;
       @include media(phone) {
@@ -37,7 +42,7 @@
       }
     }
     @include media(phone) {
-      font-size: 10px;
+      font-size: 11px;
     }
   }
 }

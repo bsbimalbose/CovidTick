@@ -10,7 +10,7 @@ export default function StateSearch() {
   const locations = state?.india?.casesByState || [];
   const districtInfo = state?.india?.districtInfo || {};
   const locationWithDistrict = state?.india?.locationWithDistrict;
-  const [sortObj, setSortObj] = useState({});
+  const [sortObj, setSortObj] = useState({id: "active", order: "desc"});
 
   useEffect(() => {
     return () => {
@@ -48,7 +48,7 @@ export default function StateSearch() {
   const data = (locationWithDistrict || locations || [])
     .filter(countryInfo => !countryInfo.hidden)
     .sort((a, b) => {
-      const sortKey = sortObj?.id || "cases";
+      const sortKey = sortObj?.id || "active";
       return sortObj?.order === "asc"
         ? a[sortKey] - b[sortKey]
         : b[sortKey] - a[sortKey];
@@ -77,7 +77,6 @@ export default function StateSearch() {
           />
         </div>
       </div>
-      <div>hello</div>
     </div>
   );
 }

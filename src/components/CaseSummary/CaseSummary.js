@@ -12,6 +12,7 @@ export default function CaseSummary({ locationInfo }) {
           label={item.label}
           value={item.count}
           change={item.change}
+          good={item.label === "Recovered"}
         ></StatCard>
       ))}
     </div>

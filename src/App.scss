@@ -40,7 +40,7 @@ body {
 }
 
 .new-cases {
-  color: $green;
+  color: $blue;
 }
 .new-deaths {
   color: $deep-red;
@@ -91,7 +91,7 @@ body {
 }
 
 .ant-card-head {
-  .main-title{
+  .main-title {
     display: flex;
     align-items: center;
     .logo {
@@ -104,7 +104,7 @@ body {
       margin-right: 7px;
       animation: spin 6s linear infinite;
     }
-  
+
     @keyframes spin {
       0% {
         transform: rotate(0deg);
@@ -118,7 +118,7 @@ body {
       25% {
         transform: rotate(120deg);
       }
-  
+
       33.33% {
         transform: rotate(120deg);
       }
@@ -131,7 +131,7 @@ body {
       58.33% {
         transform: rotate(240deg);
       }
-  
+
       66.66% {
         transform: rotate(240deg);
       }
@@ -144,7 +144,7 @@ body {
       91.66% {
         transform: rotate(360deg);
       }
-  
+
       100% {
         transform: rotate(360deg);
       }

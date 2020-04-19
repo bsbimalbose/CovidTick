@@ -11,7 +11,7 @@ export default function CountrySearch() {
   const { state, dispatch } = useContext(AppContext);
   const locations = state?.dashboard?.casesByCountry || [];
 
-  const [sortObj, setSortObj] = useState({});
+  const [sortObj, setSortObj] = useState({ id: "active_cases", order: "desc" });
 
   useEffect(() => {
     return () => {
@@ -37,7 +37,7 @@ export default function CountrySearch() {
   const data = locations
     .filter(countryInfo => !countryInfo.hidden)
     .sort((a, b) => {
-      const sortKey = sortObj?.id || "cases";
+      const sortKey = sortObj?.id || "active_cases";
       return sortObj?.order === "asc"
         ? a[sortKey] - b[sortKey]
         : b[sortKey] - a[sortKey];
@@ -53,9 +53,7 @@ export default function CountrySearch() {
             onChange={value => dispatch({ type: "COUNTRY_SEARCH", value })}
           />
         </div>
-        <div
-         className="country-search-overflow"
-        >
+        <div className="country-search-overflow">
           <DetailedTable
             colInfo={worldColInfo}
             data={data}
