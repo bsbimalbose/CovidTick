@@ -23,8 +23,8 @@ function App() {
           <Nav />
           <div className="app-content-wrap">
             <Switch>
-              <Route path={"/"} exact component={India} />
-              <Route path={"/india"} component={Dashboard} />
+              <Route path={"/"} exact component={Dashboard} />
+              <Route path={"/india"} component={India} />
               <Route path={"/compare"} component={Compare} />
               <Route path={"/tips"} component={Tips} />
             </Switch>
