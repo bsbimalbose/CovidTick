@@ -115,7 +115,7 @@ export default function DetailedTable({
                     <div>
                       {isNaN(row[col.id]) && typeof row[col.id] === "number"
                         ? "N/A"
-                        : row[col.id].toLocaleString()}
+                        : (row[col.id] || "").toLocaleString()}
                     </div>
                   </div>
                 </td>

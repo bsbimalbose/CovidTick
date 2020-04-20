@@ -40,12 +40,12 @@ export default (state = {}, action) => {
           draft.dashboard = {};
         }
         draft.dashboard.worldStat = {
-          new_cases: getNumber(worldStat?.new_cases),
-          cases: getNumber(worldStat?.total_cases),
-          active_cases: getNumber(worldStat?.active_cases),
-          total_recovered: getNumber(worldStat?.total_recovered),
-          new_deaths: getNumber(worldStat?.new_deaths),
-          deaths: getNumber(worldStat?.total_deaths)
+          new_cases: getNumber(worldStat?.todayCases),
+          cases: getNumber(worldStat?.cases),
+          active_cases: getNumber(worldStat?.active),
+          total_recovered: getNumber(worldStat?.recovered),
+          new_deaths: getNumber(worldStat?.todayDeaths),
+          deaths: getNumber(worldStat?.deaths)
         };
         draft.dashboard.isWorldStatsLoading = false;
       });
@@ -56,16 +56,16 @@ export default (state = {}, action) => {
           draft.dashboard = {};
         }
         draft.dashboard.isCountryStatsLoading = false;
-        draft.dashboard.casesByCountry = (action.value?.countries_stat || [])
+        draft.dashboard.casesByCountry = (action.value || [])
           .filter(country => !nonCountries.includes(country.country_name))
           .map(country => ({
             ...country,
             cases: getNumber(country?.cases),
-            new_cases: getNumber(country?.new_cases),
-            active_cases: getNumber(country?.active_cases),
+            new_cases: getNumber(country?.todayCases),
+            active_cases: getNumber(country?.active),
             deaths: getNumber(country?.deaths),
-            new_deaths: getNumber(country?.new_deaths),
-            total_recovered: getNumber(country?.total_recovered)
+            new_deaths: getNumber(country?.todayDeaths),
+            total_recovered: getNumber(country?.recovered)
           }));
         draft.dashboard.updated = action.value?.statistic_taken_at || "";
       });
@@ -75,7 +75,7 @@ export default (state = {}, action) => {
       const newLocations = (state?.dashboard?.casesByCountry || []).map(
         countryInfo => ({
           ...countryInfo,
-          hidden: !(countryInfo?.country_name || "")
+          hidden: !(countryInfo?.country || "")
             .toLowerCase()
             .includes(action.value.trim().toLowerCase())
         })

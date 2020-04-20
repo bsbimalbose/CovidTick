@@ -12,10 +12,16 @@ export const getWorldStats = async () =>
     "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php",
     config
   );
+export const getWorldStatsNew = async () =>
+  await axios.get("https://corona.lmao.ninja/v2/all?yesterday=false");
 export const getCasesByCountryData = async () =>
   await axios.get(
     "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
     config
+  );
+export const getCasesByCountryDataNew = async () =>
+  await axios.get(
+    "https://corona.lmao.ninja/v2/countries?yesterday=false&sort=active"
   );
 export const getCountryHistory = async country =>
   await axios.get(
@@ -26,6 +32,10 @@ export const getCountryHistory = async country =>
         country
       }
     }
+  );
+export const getCountryHistoryNew = async country =>
+  await axios.get(
+    `https://corona.lmao.ninja/v2/historical/${country}?lastdays=30`
   );
 
 export const getIndiaData = async () =>

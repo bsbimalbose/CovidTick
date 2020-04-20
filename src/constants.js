@@ -389,7 +389,7 @@ export const worldColInfo = [
     label: "Country",
     mLabel: "",
     sLabel: "",
-    id: "country_name",
+    id: "country",
     leftAlign: true
   },
   {

@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import CountrySearch from "../components/ContrySearch/CountrySearch";
 import WorldMap from "../map/WorldMap";
 import { getFromLocalStorage, saveToLocalStorage } from "../utils";
-import { getCasesByCountryData, getWorldStats } from "../api";
+import { getCasesByCountryDataNew, getWorldStatsNew } from "../api";
 import { AppContext } from "../App";
 import "./sass/dashboard.scss";
 import StatCard from "../components/StatCard/StatCard";
@@ -15,7 +15,7 @@ export default function Dashboard() {
     dispatch({ type: "LOAD_CASES_BY_COUNTRY" });
     let worldInfo = getFromLocalStorage("cases-by-country");
     if (!worldInfo) {
-      worldInfo = (await getCasesByCountryData())?.data || [];
+      worldInfo = (await getCasesByCountryDataNew())?.data || [];
       saveToLocalStorage("cases-by-country", worldInfo);
     }
     dispatch({ type: "SET_CASES_BY_COUNTRY", value: worldInfo });
@@ -24,7 +24,7 @@ export default function Dashboard() {
     dispatch({ type: "LOAD_WORLD_STATS" });
     let worldInfo = getFromLocalStorage("world-stats");
     if (!worldInfo) {
-      worldInfo = (await getWorldStats())?.data || [];
+      worldInfo = (await getWorldStatsNew())?.data || [];
       saveToLocalStorage("world-stats", worldInfo);
     }
     dispatch({ type: "SET_WORLD_STATS", value: worldInfo });
