@@ -61,10 +61,7 @@ function GeoChart({ mapData, property, countryDetails }) {
   let selectedCountryDetails = null;
   if (selectedCountry) {
     selectedCountryDetails =
-      countryDetails?.[selectedCountry.properties?.["iso_a3"]] ||
-      countryDetails?.[selectedCountry.properties?.["geounit"]] ||
-      countryDetails?.[selectedCountry.properties?.["name"]] ||
-      {};
+      countryDetails?.[selectedCountry.properties?.["iso_a3"]] || {};
   }
 
   return (

@@ -10,8 +10,8 @@ export default function CaseSummary({ locationInfo }) {
         <StatCard
           key={item.label}
           label={item.label}
-          value={item.count}
-          change={item.change}
+          value={(item.count || "").toLocaleString()}
+          change={(item.change || "").toLocaleString()}
           good={item.label === "Recovered"}
         ></StatCard>
       ))}

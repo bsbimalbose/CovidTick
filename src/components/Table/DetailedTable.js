@@ -109,7 +109,7 @@ export default function DetailedTable({
                           col.newClassName ? col.newClassName : ""
                         } `}
                       >
-                        <FaArrowUp /> {row[col.newId]}
+                        <FaArrowUp /> {(row[col.newId] || "").toLocaleString()}
                       </div>
                     )}
                     <div>
