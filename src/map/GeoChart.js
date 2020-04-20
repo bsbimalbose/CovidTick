@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { select, geoPath, geoMercator, max, scaleSqrt } from "d3";
 import useResizeObserver from "./useResizeObserver";
-import { get } from "../utils";
 import { AppContext } from "../App";
 import { Spin } from "antd";
 
@@ -52,9 +51,9 @@ function GeoChart({ mapData, property, countryDetails }) {
         if (feature) {
           color = colorScale(
             (
-              get(countryDetails, feature.properties["iso_a3"], false) ||
-              get(countryDetails, feature.properties["geounit"], false) ||
-              get(countryDetails, feature.properties["name"], false) ||
+              countryDetails?.feature?.properties?.["iso_a3"] ||
+              countryDetails?.feature?.properties?.["geounit"] ||
+              countryDetails?.feature?.properties?.["name"] ||
               {}
             ).cases || 0
           );

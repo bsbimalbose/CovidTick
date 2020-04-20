@@ -1,31 +1,12 @@
 import produce from "immer";
 import moment from "moment";
 
-export const get = (value = {}, path, defaultValue) =>
-  value
-    ? (() =>
-        typeof path === "string"
-          ? path.replace(/\[(\d+)]/g, ".$1")
-          : path.join("."))()
-        .split(".")
-        .filter(Boolean)
-        .every(
-          step =>
-            (value =
-              value[step] !== null || undefined ? value[step] : undefined) !==
-            undefined
-        )
-      ? value
-      : defaultValue
-    : defaultValue;
-
 export const getDeviceLabel = () =>
   window.innerWidth <= 375
     ? "sLabel"
     : window.innerWidth <= 769
     ? "mLabel"
     : "label";
-
 
 export const combineProvincesToFormCountryInfo = locationsData => {
   const countryMap = locationsData.reduce((acc, location) => {

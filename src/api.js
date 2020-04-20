@@ -7,32 +7,14 @@ let config = {
   }
 };
 
-export const getWorldStats = async () =>
-  await axios.get(
-    "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php",
-    config
-  );
 export const getWorldStatsNew = async () =>
   await axios.get("https://corona.lmao.ninja/v2/all?yesterday=false");
-export const getCasesByCountryData = async () =>
-  await axios.get(
-    "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
-    config
-  );
+
 export const getCasesByCountryDataNew = async () =>
   await axios.get(
     "https://corona.lmao.ninja/v2/countries?yesterday=false&sort=active"
   );
-export const getCountryHistory = async country =>
-  await axios.get(
-    "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_particular_country.php",
-    {
-      ...config,
-      params: {
-        country
-      }
-    }
-  );
+
 export const getCountryHistoryNew = async country =>
   await axios.get(
     `https://corona.lmao.ninja/v2/historical/${country}?lastdays=30`
@@ -49,3 +31,28 @@ export const getIndiaDaily = async () =>
 
 export const getIndiaStateDaily = async () =>
   await axios.get("https://api.covid19india.org/states_daily.json");
+
+/* OLD API REQUESTS */
+
+// export const getWorldStats = async () =>
+//   await axios.get(
+//     "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php",
+//     config
+//   );
+
+// export const getCasesByCountryData = async () =>
+//   await axios.get(
+//     "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
+//     config
+//   );
+
+export const getCountryHistory = async country =>
+  await axios.get(
+    "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_particular_country.php",
+    {
+      ...config,
+      params: {
+        country
+      }
+    }
+  );
