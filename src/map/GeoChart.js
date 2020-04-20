@@ -50,12 +50,7 @@ function GeoChart({ mapData, property, countryDetails }) {
         let color = "#ccc";
         if (feature) {
           color = colorScale(
-            (
-              countryDetails?.feature?.properties?.["iso_a3"] ||
-              countryDetails?.feature?.properties?.["geounit"] ||
-              countryDetails?.feature?.properties?.["name"] ||
-              {}
-            ).cases || 0
+            (countryDetails?.[feature?.properties?.["iso_a3"]] || {}).cases || 0
           );
         }
         return color;
