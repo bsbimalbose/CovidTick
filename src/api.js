@@ -32,6 +32,9 @@ export const getIndiaDaily = async () =>
 export const getIndiaStateDaily = async () =>
   await axios.get("https://api.covid19india.org/states_daily.json");
 
+export const getIndiaTestsPerState = async () =>
+  await axios.get("https://api.covid19india.org/state_test_data.json");
+
 /* OLD API REQUESTS */
 
 // export const getWorldStats = async () =>

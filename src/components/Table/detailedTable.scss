@@ -86,6 +86,11 @@
       .detailed-info-cell {
         padding: 15px 50px;
         background: white;
+        .tested-info {
+          padding-bottom: 10px;
+          text-align: end;
+          font-weight: 500;
+        }
       }
     }
   }

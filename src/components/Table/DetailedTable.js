@@ -124,6 +124,11 @@ export default function DetailedTable({
             {openRowIndexes.includes(rowIndex) && (
               <tr className="detailed-info-row">
                 <td colSpan={colInfo.length + 1} className="detailed-info-cell">
+                  {Boolean(row?.testedData) && (
+                    <div className="tested-info">
+                      Total Tested: {(row?.testedData).toLocaleString()}
+                    </div>
+                  )}
                   <DetailedTable
                     colInfo={districtColInfo}
                     data={row[detailedKey].sort((a, b) => {

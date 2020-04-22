@@ -1,5 +1,9 @@
 import React, { useEffect, useContext } from "react";
-import { getIndiaData, getIndiaDistrictData, getIndiaDaily } from "../api";
+import {
+  getIndiaData,
+  getIndiaDistrictData,
+  getIndiaTestsPerState
+} from "../api";
 import { AppContext } from "../App";
 import { getFromLocalStorage, saveToLocalStorage } from "../utils";
 import StateSearch from "../components/StateSearch/StateSearch";
@@ -75,7 +79,19 @@ export default function India() {
         // dispatch({ type: "SET_WORLD_DATA", value: (worldData || {}).data });
       })();
     }
+    if (!state?.india?.test_info) {
+      fetchTestData();
+    }
   }, []);
+
+  const fetchTestData = async () => {
+    let testStats = getFromLocalStorage("india-test-stats");
+    if (!testStats) {
+      testStats = (await getIndiaTestsPerState())?.data || [];
+      saveToLocalStorage("india-test-stats", testStats);
+    }
+    dispatch({ type: "SET_INDIA_TEST_STATS", value: testStats });
+  };
 
   const filteredDaily = (state?.india?.daily || []).filter(item =>
     moment("01 March 2020", "DD MMMM YYYY").isSameOrBefore(item.date)

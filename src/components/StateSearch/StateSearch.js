@@ -4,13 +4,15 @@ import IconInput from "../IconInput";
 import { FiSearch } from "react-icons/fi";
 import { indiaColInfo } from "../../constants";
 import DetailedTable from "../Table/DetailedTable";
+import { getNumber } from "../../utils";
 
 export default function StateSearch() {
   const { state, dispatch } = useContext(AppContext);
   const locations = state?.india?.casesByState || [];
   const districtInfo = state?.india?.districtInfo || {};
+  const testStats = state?.india?.testStats || {};
   const locationWithDistrict = state?.india?.locationWithDistrict;
-  const [sortObj, setSortObj] = useState({id: "active", order: "desc"});
+  const [sortObj, setSortObj] = useState({ id: "active", order: "desc" });
 
   useEffect(() => {
     return () => {
@@ -46,6 +48,11 @@ export default function StateSearch() {
   const handleRowClick = row => {};
 
   const data = (locationWithDistrict || locations || [])
+    .map(countryInfo => ({
+      ...countryInfo,
+      testedDate: testStats?.[countryInfo.state]?.updatedon || false,
+      testedData: getNumber(testStats?.[countryInfo.state]?.totaltested || "0")
+    }))
     .filter(countryInfo => !countryInfo.hidden)
     .sort((a, b) => {
       const sortKey = sortObj?.id || "active";
@@ -64,9 +71,7 @@ export default function StateSearch() {
             onChange={value => dispatch({ type: "INDIA_SEARCH", value })}
           />
         </div> */}
-        <div
-          className="state-search-overflow-wrap"
-        >
+        <div className="state-search-overflow-wrap">
           <DetailedTable
             colInfo={indiaColInfo}
             data={data}

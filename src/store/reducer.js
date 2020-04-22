@@ -50,6 +50,30 @@ export default (state = {}, action) => {
         draft.dashboard.isWorldStatsLoading = false;
       });
     }
+    case "SET_INDIA_TEST_STATS": {
+      return produce(state, draft => {
+        const indiaTestData = action.value?.states_tested_data || [];
+        const testStats = indiaTestData.reduce((acc, current) => {
+          const currentUpdatedDate = moment(current.updatedon, "DD/MM/YYYY");
+          const oldUpdatedData = acc?.[current.state]?.updatedon
+            ? moment(acc?.[current.state]?.updatedon, "DD/MM/YYYY")
+            : false;
+          if (
+            !(
+              oldUpdatedData &&
+              currentUpdatedDate.isSameOrBefore(oldUpdatedData)
+            )
+          ) {
+            acc[current.state] = { ...current, updatedon: currentUpdatedDate };
+          }
+          return acc;
+        }, {});
+        if (!draft?.india) {
+          draft.india = {};
+        }
+        draft.india.testStats = testStats;
+      });
+    }
     case "SET_CASES_BY_COUNTRY": {
       return produce(state, draft => {
         if (!draft?.dashboard) {
