@@ -55,10 +55,13 @@ export default (state = {}, action) => {
         const indiaTestData = action.value?.states_tested_data || [];
         const testStats = indiaTestData.reduce((acc, current) => {
           const currentUpdatedDate = moment(current.updatedon, "DD/MM/YYYY");
+          const isValuePresent =
+            current.totaltested && current.totaltested.trim() !== "";
           const oldUpdatedData = acc?.[current.state]?.updatedon
             ? moment(acc?.[current.state]?.updatedon, "DD/MM/YYYY")
             : false;
           if (
+            isValuePresent &&
             !(
               oldUpdatedData &&
               currentUpdatedDate.isSameOrBefore(oldUpdatedData)
