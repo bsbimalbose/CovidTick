@@ -7,7 +7,12 @@ export const getFormattedCountryHistory = (countryStats, country) => {
     return acc;
   }, {});
 
-  return Object.values(countryDateMap).reduce((acc, current) => {
+  const sortedKeys = Object.keys(countryDateMap).sort((a, b) =>
+    a > b ? 1 : -1
+  );
+  const sortedData = sortedKeys.map(key => countryDateMap[key]);
+
+  return Object.values(sortedData).reduce((acc, current) => {
     const { Confirmed = [], Deaths = [], Active = [], Recovered = [] } = acc;
     Confirmed.push({
       date: moment(current.record_date),
