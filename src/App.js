@@ -11,7 +11,7 @@ import ReactGA from "react-ga";
 
 function initializeReactGA() {
   ReactGA.initialize("UA-164642017-1");
-  ReactGA.pageview("/homepage");
+  ReactGA.pageview(window.location.pathname + window.location.search);
 }
 
 export const AppContext = React.createContext();
