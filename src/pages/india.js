@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import {
   getIndiaData,
   getIndiaDistrictData,
-  getIndiaTestsPerState
+  getIndiaTestsPerState,
 } from "../api";
 import { AppContext } from "../App";
 import { getFromLocalStorage, saveToLocalStorage } from "../utils";
@@ -22,26 +22,26 @@ export default function India() {
     {
       label: CASES_SUMMARY.CONFIRMED,
       count: indiaStats.confirmed,
-      change: indiaStats.deltaconfirmed
+      change: indiaStats.deltaconfirmed,
     },
     { label: CASES_SUMMARY.ACTIVE, count: indiaStats.active },
     {
       label: CASES_SUMMARY.DEATHS,
       count: indiaStats.deaths,
-      change: indiaStats.deltadeaths
+      change: indiaStats.deltadeaths,
     },
     {
       label: CASES_SUMMARY.RECOVERED,
       count: indiaStats.recovered,
-      change: indiaStats.deltarecovered
-    }
+      change: indiaStats.deltarecovered,
+    },
   ];
 
   useEffect(() => {
     console.log("rendering.....");
     if (!state?.india?.casesByState && !state?.india?.isStateLoading) {
       dispatch({
-        type: "LOAD_SATE_DATA"
+        type: "LOAD_SATE_DATA",
       });
       (async function anyNameFunction() {
         let indiaInfo = {};
@@ -60,7 +60,7 @@ export default function India() {
     }
     if (!state?.india?.districtInfo) {
       dispatch({
-        type: "LOAD_DISTRICT_DATA"
+        type: "LOAD_DISTRICT_DATA",
       });
       (async function anyNameFunction() {
         let indiaDistrictInfo = {};
@@ -74,7 +74,7 @@ export default function India() {
         }
         dispatch({
           type: "SET_INDIA_DISTRICT_DATA",
-          value: indiaDistrictInfo || {}
+          value: indiaDistrictInfo || {},
         });
         // dispatch({ type: "SET_WORLD_DATA", value: (worldData || {}).data });
       })();
@@ -93,15 +93,15 @@ export default function India() {
     dispatch({ type: "SET_INDIA_TEST_STATS", value: testStats });
   };
 
-  const filteredDaily = (state?.india?.daily || []).filter(item =>
+  const filteredDaily = (state?.india?.daily || []).filter((item) =>
     moment("01 March 2020", "DD MMMM YYYY").isSameOrBefore(item.date)
   );
-  const xAxis = filteredDaily.map(item => moment(item.date).format("DD MMM"));
+  const xAxis = filteredDaily.map((item) => moment(item.date).format("DD MMM"));
 
   const dataPlaceHolder = [
-    { label: "Confirmed", borderColor: "#078AF9", data: [] },
-    { label: "Deaths", borderColor: "#FC313F", data: [] },
-    { label: "Recovered", borderColor: "#1DDDCC", data: [] }
+    { label: "Confirmed", borderColor: "#4285F4", data: [] },
+    { label: "Deaths", borderColor: "#DB4437", data: [] },
+    { label: "Recovered", borderColor: "#43a047", data: [] },
   ];
   const dataSet = filteredDaily.reduce((acc, item) => {
     acc[0].data.push(item.totalconfirmed);
