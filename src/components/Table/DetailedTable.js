@@ -120,16 +120,17 @@ export default function DetailedTable({
                       </div>
                     )}
                     <div>
-                      {isNaN(row[col.id]) && typeof row[col.id] === "number"
+                      {!detailedKey && row?.[col.id] === 0
                         ? "N/A"
-                        : (row[col.id] || "").toLocaleString()}
+                        : row[col.id].toLocaleString()}
                     </div>
-                    {Boolean(row?.[col?.subTextKey]) && (
-                      <div className="total-tests">
-                        <GrTest />
-                        {(row?.[col.subTextKey]).toLocaleString()}
-                      </div>
-                    )}
+                    {Boolean(row?.[col?.subTextKey]) &&
+                      !openRowIndexes.includes(rowIndex) && (
+                        <div className="total-tests">
+                          <GrTest />
+                          {(row?.[col.subTextKey]).toLocaleString()}
+                        </div>
+                      )}
                   </div>
                 </td>
               ))}
@@ -137,6 +138,27 @@ export default function DetailedTable({
             {openRowIndexes.includes(rowIndex) && (
               <tr className="detailed-info-row">
                 <td colSpan={colInfo.length + 1} className="detailed-info-cell">
+                  <div className="detailed-header">
+                    <div>
+                      {Boolean(row?.testedData) && (
+                        <div className="total-tests">
+                          <span className="label">Total Tested: </span>
+                          <span className="value">
+                            {" "}
+                            {(row?.testedData).toLocaleString()}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="recovery">
+                      <span className="label"> Recovery:</span>
+                      <span className="value">{` ${(
+                        (row.recovered / row.confirmed) *
+                        100
+                      ).toFixed(2)} %`}</span>
+                    </div>
+                  </div>
+
                   <DetailedTable
                     colInfo={districtColInfo}
                     data={row[detailedKey].sort((a, b) => {

@@ -110,6 +110,30 @@
           font-weight: 500;
         }
       }
+      .detailed-header {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 500;
+        margin-top: -10px;
+        margin-bottom: 8px;
+        .total-tests,
+        .recovery {
+          display: flex;
+          .value {
+            margin-left: 5px;
+          }
+        }
+        .total-tests {
+          .value {
+            color: #9c27b0;
+          }
+        }
+        .recovery {
+          .value {
+            color: #43a047;
+          }
+        }
+      }
     }
   }
 }
