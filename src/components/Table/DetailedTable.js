@@ -3,9 +3,10 @@ import {
   MdArrowDropUp,
   MdArrowDropDown,
   MdKeyboardArrowDown,
-  MdKeyboardArrowUp
+  MdKeyboardArrowUp,
 } from "react-icons/md";
 import { FaArrowUp } from "react-icons/fa";
+import { GrTest } from "react-icons/gr";
 import { districtColInfo } from "../../constants";
 import "./detailedTable.scss";
 import { getDeviceLabel } from "../../utils";
@@ -17,14 +18,14 @@ export default function DetailedTable({
   className = "",
   sortedInfo,
   handleHeadClick = () => {},
-  detailedKey
+  detailedKey,
 }) {
   const [openRowIndexes, setOpenIndexes] = useState([]);
 
-  const handleRowClick = rowIndex => {
+  const handleRowClick = (rowIndex) => {
     let newRowIndexes = [];
     if (openRowIndexes.includes(rowIndex)) {
-      newRowIndexes = openRowIndexes.filter(index => index !== rowIndex);
+      newRowIndexes = openRowIndexes.filter((index) => index !== rowIndex);
     } else {
       newRowIndexes = [...openRowIndexes, rowIndex];
     }
@@ -36,7 +37,7 @@ export default function DetailedTable({
       <thead>
         <tr>
           {detailedKey && <th width="10px"></th>}
-          {colInfo.map(col => (
+          {colInfo.map((col) => (
             <th>
               <div className={`cell ${col.leftAlign ? "align-left" : ""}`}>
                 {col.newId && (
@@ -100,9 +101,15 @@ export default function DetailedTable({
                   ) : null}
                 </td>
               )}
-              {colInfo.map(col => (
+              {colInfo.map((col) => (
                 <td>
-                  <div className={`cell ${col.leftAlign ? "align-left" : ""}`}>
+                  <div
+                    className={`cell ${col.leftAlign ? "align-left" : ""} ${
+                      col.subTextKey && row?.[col.subTextKey]
+                        ? "has-subtext"
+                        : ""
+                    } `}
+                  >
                     {col.newId && Boolean(row[col.newId]) && (
                       <div
                         className={`new ${
@@ -117,6 +124,12 @@ export default function DetailedTable({
                         ? "N/A"
                         : (row[col.id] || "").toLocaleString()}
                     </div>
+                    {Boolean(row?.[col?.subTextKey]) && (
+                      <div className="total-tests">
+                        <GrTest />
+                        {(row?.[col.subTextKey]).toLocaleString()}
+                      </div>
+                    )}
                   </div>
                 </td>
               ))}
@@ -124,11 +137,6 @@ export default function DetailedTable({
             {openRowIndexes.includes(rowIndex) && (
               <tr className="detailed-info-row">
                 <td colSpan={colInfo.length + 1} className="detailed-info-cell">
-                  {Boolean(row?.testedData) && (
-                    <div className="tested-info">
-                      Total Tested: {(row?.testedData).toLocaleString()}
-                    </div>
-                  )}
                   <DetailedTable
                     colInfo={districtColInfo}
                     data={row[detailedKey].sort((a, b) => {

@@ -2,13 +2,13 @@ export const CASES_SUMMARY = {
   CONFIRMED: "Confirmed",
   RECOVERED: "Recovered",
   ACTIVE: "Active",
-  DEATHS: "Deaths"
+  DEATHS: "Deaths",
 };
 
 export const LOCATION_META = {
   WORLD: "WORLD",
   INDIA: "INDIA",
-  INDIA_STATE: "INDIA_STATE"
+  INDIA_STATE: "INDIA_STATE",
 };
 
 export const COMPARE_COLORS = [
@@ -16,7 +16,7 @@ export const COMPARE_COLORS = [
   "#DB4437",
   "#FFCA28",
   "#43A047",
-  "#9C27B0"
+  "#9C27B0",
 ];
 
 export const countries = [
@@ -231,7 +231,7 @@ export const countries = [
   "Timor-Leste",
   "Saint Pierre Miquelon",
   "Yemen",
-  "China"
+  "China",
 ];
 
 export const indianStates = [
@@ -271,7 +271,7 @@ export const indianStates = [
   "Jammu and Kashmir",
   "Ladakh",
   "Lakshadweep",
-  "Puducherry"
+  "Puducherry",
 ];
 
 export const COMPARE_LOCATIONS = [...countries, ...indianStates];
@@ -314,7 +314,7 @@ export const indiaStateCodes = {
   LA: "Ladakh",
   LD: "Lakshadweep",
   PY: "Puducherry",
-  TT: "INDIA"
+  TT: "INDIA",
 };
 
 export const indiaColInfo = [
@@ -323,7 +323,8 @@ export const indiaColInfo = [
     id: "state",
     mLabel: "",
     sLabel: "",
-    leftAlign: true
+    subTextKey: "testedData",
+    leftAlign: true,
   },
   {
     label: "Confirmed",
@@ -333,14 +334,14 @@ export const indiaColInfo = [
     newId: "deltaconfirmed",
     newLabel: "new",
     newClassName: "new-cases",
-    sortable: true
+    sortable: true,
   },
   {
     label: "Active",
     mLabel: "Actv",
     sLabel: "A",
     id: "active",
-    sortable: true
+    sortable: true,
   },
   {
     label: "Recovered",
@@ -350,7 +351,7 @@ export const indiaColInfo = [
     newId: "deltarecovered",
     newLabel: "new",
     newClassName: "new-recovered",
-    sortable: true
+    sortable: true,
   },
   {
     label: "Deaths",
@@ -360,8 +361,8 @@ export const indiaColInfo = [
     newId: "deltadeaths",
     newLabel: "new",
     newClassName: "new-deaths",
-    sortable: true
-  }
+    sortable: true,
+  },
 ];
 
 export const districtColInfo = [
@@ -370,7 +371,7 @@ export const districtColInfo = [
     mLabel: "District",
     sLabel: "Dstrt",
     leftAlign: true,
-    id: "name"
+    id: "name",
   },
   {
     label: "Confirmed",
@@ -380,8 +381,8 @@ export const districtColInfo = [
     newId: "new_confirmed",
     newLabel: "new",
     newClassName: "new-cases",
-    sortable: true
-  }
+    sortable: true,
+  },
 ];
 
 export const worldColInfo = [
@@ -390,7 +391,7 @@ export const worldColInfo = [
     mLabel: "",
     sLabel: "",
     id: "country",
-    leftAlign: true
+    leftAlign: true,
   },
   {
     label: "Confirmed",
@@ -400,14 +401,14 @@ export const worldColInfo = [
     newId: "new_cases",
     newLabel: "new",
     newClassName: "new-cases",
-    sortable: true
+    sortable: true,
   },
   {
     label: "Active",
     mLabel: "Actv",
     sLabel: "A",
     id: "active_cases",
-    sortable: true
+    sortable: true,
   },
 
   {
@@ -415,7 +416,7 @@ export const worldColInfo = [
     mLabel: "Rcrvd",
     sLabel: "R",
     id: "total_recovered",
-    sortable: true
+    sortable: true,
   },
   {
     label: "Deaths",
@@ -425,6 +426,6 @@ export const worldColInfo = [
     newId: "new_deaths",
     newLabel: "new",
     newClassName: "new-deaths",
-    sortable: true
-  }
+    sortable: true,
+  },
 ];

@@ -7,8 +7,10 @@ let config = {
   }
 };
 
-export const getWorldStatsNew = async () =>
-  await axios.get("https://corona.lmao.ninja/v2/all?yesterday=false");
+export const getWorldStatsNew = async yesterday =>
+  await axios.get(
+    `https://corona.lmao.ninja/v2/all?yesterday=${yesterday ? true : false}`
+  );
 
 export const getCasesByCountryDataNew = async () =>
   await axios.get(
