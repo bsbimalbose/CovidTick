@@ -24,14 +24,14 @@
       flex-flow: column;
       flex: 1;
       .graph-wrap {
-        max-width: 600px;
+        max-width: 475px;
       }
       .stats-wrap {
         display: flex;
         justify-content: space-between;
         .stat-card {
           @include media(big-desktop) {
-            margin-left: 15px;
+            // margin-left: 15px;
           }
         }
       }
