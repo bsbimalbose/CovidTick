@@ -39,7 +39,7 @@ export const getFromLocalStorage = (key) => {
     const value = JSON.parse(item);
     const writtenStamp = value?.timestamp;
     const ageInMinutes = moment().diff(writtenStamp, "minutes");
-    if (ageInMinutes > 30) {
+    if (ageInMinutes > 10) {
       return false;
     }
     return value?.value;
