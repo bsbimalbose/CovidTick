@@ -121,7 +121,7 @@ export default function DetailedTable({
                     )}
                     <div>
                       {!detailedKey && row?.[col.id] === 0
-                        ? "N/A"
+                        ? 0
                         : row[col.id].toLocaleString()}
                     </div>
                     {Boolean(row?.[col?.subTextKey]) &&
@@ -162,7 +162,7 @@ export default function DetailedTable({
                   <DetailedTable
                     colInfo={districtColInfo}
                     data={row[detailedKey].sort((a, b) => {
-                      const sortKey = "confirmed";
+                      const sortKey = "active";
                       return b[sortKey] - a[sortKey];
                     })}
                   />

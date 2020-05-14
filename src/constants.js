@@ -383,6 +383,23 @@ export const districtColInfo = [
     newClassName: "new-cases",
     sortable: true,
   },
+  {
+    label: "Active",
+    mLabel: "Actv",
+    sLabel: "A",
+    id: "active",
+    sortable: true,
+  },
+  {
+    label: "Deaths",
+    mLabel: "Dths",
+    sLabel: "D",
+    id: "deaths",
+    newId: "new_deaths",
+    newLabel: "new",
+    newClassName: "new-deaths",
+    sortable: true,
+  },
 ];
 
 export const worldColInfo = [
